@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NILESH-KRISHNAMURTHY</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+</head>
+<body>
+  <header class="navbar">
+    <div class="left-section">
+      <div class="profile-container">
+        <img src="assets/profile.jpg" alt="Profile" class="profile-pic" />
+        <span class="profile-text">PROFILE</span>
+
+        <!-- Hamburger Icon near Profile -->
+        <button class="menu-btn" id="menu-btn">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="right-section">
+      <a href="#about">ABOUT</a>
+      <a href="#resume">RESUME</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#contact">CONTACT</a>
+    </div>
+  </header>
+  
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="about-container">
+      <div class="about-image">
+        <img src="assets/myimg.png" alt="About Me" />
+      </div>
+
+      <div class="about-text">
+        <h1>About Me</h1>
+        <p>
+          Hello! I’m <strong>Nilesh K</strong>, a final year ECE student passionate about 
+          <strong>software technologies</strong> and <strong>real-world problem solving</strong>.
+        </p>
+        <p>
+          I work on <strong>web-development tools</strong>,having knowledge on <strong>problem-solving</strong>, and 
+          <strong>cloud-based systems</strong> — building scalable and interactive solutions that 
+          combine creativity with technology.
+        </p>
+        <p>
+          My projects focus on <strong>real-time performance</strong>, <strong>clean UI/UX</strong>, 
+          and strong backend architecture using modern tech stacks.
+        </p>
+      </div>
+    </div>
+  </section>
+<!-- Resume Section -->
+<section id="resume" class="resume-section">
+  <div class="resume-container">
+    <!-- Left: Resume Info -->
+    <div class="resume-info">
+      <h1>My Resume</h1>
+      <p>
+        Here’s a preview of my resume showcasing my academic background,
+        technical expertise,and skills reflecting my passion
+        for technology and innovation.
+      </p>
+
+      <!-- Opens resume.html in a new browser tab -->
+      <button class="preview-btn" onclick="openResumePage()">👁️ Preview Resume</button>
+    </div>
+
+    <!-- Right: Skills Icons -->
+    <div class="skills-container">
+      <h2>Tech Skills & Tools</h2>
+      <div class="skills-grid">
+        <div class="skill-card"><img src="assets/html.jpg" alt="HTML" /><span>HTML</span></div>
+        <div class="skill-card"><img src="assets/css.jpg" alt="CSS" /><span>CSS</span></div>
+        <div class="skill-card"><img src="assets/js.jpg" alt="JavaScript" /><span>JavaScript</span></div>
+        <div class="skill-card"><img src="assets/react.jpg" alt="React.js" /><span>React.js</span></div>
+        <div class="skill-card"><img src="assets/node.jpg" alt="Node.js" /><span>Node.js</span></div>
+        <div class="skill-card"><img src="assets/python.jpg" alt="Python" /><span>Python</span></div>
+        <div class="skill-card"><img src="assets/sql.png" alt="DBMS" /><span>DBMS</span></div>
+        <div class="skill-card"><img src="assets/vercel.png" alt="Vercel" /><span>Vercel</span></div>
+        <div class="skill-card"><img src="assets/git.jpg" alt="Git" /><span>Git</span></div>
+        <div class="skill-card"><img src="assets/vscode.jpg" alt="VS Code" /><span>VS Code</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Projects Section -->
+<section id="projects" class="projects-section">
+  <div class="projects-container">
+    <h1>My Projects</h1>
+    <p class="projects-intro">
+      A selection of my works showcasing creativity, logic, and full-stack development.
+    </p>
+
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="project-card">
+        <img src="assets/acadbook.jpg" alt="AcadBook" class="project-img" />
+        <div class="project-info">
+          <h3>AcadBook</h3>
+          <p>
+            A full-stack lab slot booking system for students and faculty, leveraging React for a dynamic and intuitive user interface,
+  Node.js and booking logic, and MongoDB as the flexible NoSQL database.Manages chaos and human interruption for timely events.
+          </p>
+          <a href="https://github.com/nileshkrish/acadbook" target="_blank" class="project-btn">
+            🔗 View Project
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <img src="assets/mcp.jpg" alt="NL 2 SQL 2 NL" class="project-img" />
+        <div class="project-info">
+          <h3>NL 2 SQL 2 NL</h3>
+          <p>
+            Natural Language to SQL and Back using MCP (Model Context Protocol)
+  that converts natural language queries into SQL commands and translates SQL outputs back to human-readable text using Model 
+Context Protocol (MCP).
+          </p>
+          <a href="https://github.com/Nilesh248004/NL2SQL2NL" target="_blank" class="project-btn">
+            🔗 View Project
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <img src="assets/folio.jpg" alt="PORTFOLIO" class="project-img" />
+        <div class="project-info">
+          <h3>My Portfolio</h3>
+          <p>
+            A portfolio website built with HTML, CSS, and JavaScript leverages HTML for structuring content, CSS for visually styling and laying out elements, and JavaScript for adding interactive features and dynamic behavior
+          </p>
+          <a href="https://github.com/Nilesh248004/PORTFOLIO" target="_blank" class="project-btn">
+            🔗 View Project
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <div class="contact-container">
+    <div class="contact-info">
+      <h1>Contact Me</h1>
+      <p><h2>Have a question, collaboration idea, or want to get in touch?</h2></p>
+      <p>
+        Feel free to drop a message — I’m always open to discuss exciting tech ideas and opportunities.
+      </p>
+
+      <div class="contact-details">
+  <p><strong>Email:</strong> 
+    <a href="mailto:nileshkrishnamurthy@gmail.com">nileshkrishnamurthy@gmail.com</a>
+  </p>
+
+  <p><strong>LinkedIn:</strong> 
+    <a href="https://www.linkedin.com/in/nileshkrishnamurthy/" target="_blank">
+      linkedin.com/in/nileshkrishnamurthy
+    </a>
+  </p>
+
+  <p><strong>Location:</strong> 🌍 The Nilgiris, India</p>
+</div>
+
+    </div>
+
+    <form id="contact-form" class="contact-form">
+  <input type="text" name="from_name" placeholder="Your Name" required />
+  <input type="email" name="from_email" placeholder="Your Email" required />
+  <textarea name="message" placeholder="Your Message" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
+
+  </div>
+</section>
+
+  <div class="profile-popup" id="profile-popup">
+        BACHELOR's DEGREE :
+        <P><strong> BANNARI AMMAN INSTITUTE OF TECHNOLOGY.</strong><br /></P>
+        HIGHER SECONDARY EDUCATION :
+        <P><strong> INTERNATIONAL COMMUNITY SCHOOL and JUNIOR COLLEGE.</strong><br /></P>
+        SECONDARY EDUCATION :
+        <P><strong> ST.THOMAS ENGLISH HIGH SCHOOL.</strong><br /></P>
+        
+      </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
