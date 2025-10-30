@@ -13,41 +13,46 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// ===== CONTACT FORM =====
-// Initialize EmailJS
-// Initialize EmailJS with your Public Key
-// Load EmailJS SDK first in HTML
-emailjs.init("ZCF0kUzP2t4A3aMKu"); // replace with your key
+// ===== CONTACT FORM & EMAILJS SDK LOAD =====
+const emailJsScript = document.createElement("script");
+emailJsScript.type = "text/javascript";
+emailJsScript.src = "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+document.head.appendChild(emailJsScript);
 
-document
-  .getElementById("contact-form")
-  .addEventListener("submit", function (event) {
-    event.preventDefault();
+emailJsScript.onload = function () {
+  (function () {
+    emailjs.init({
+      publicKey: "ZCF0kUzP2t4A3aMKu", // Use your actual public key
+    });
+  })();
 
-    emailjs
-      .sendForm("service_q7ljbaj", "template_cuyqd0g", this)
-      .then(() => {
-        const oldMsg = this.querySelector(".success-message");
-        if (oldMsg) oldMsg.remove();
+  document
+    .getElementById("contact-form")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
 
-        const successMsg = document.createElement("p");
-        successMsg.textContent = "✅ Message sent successfully!";
-        successMsg.className = "success-message";
-        successMsg.style.color = "green";
-        successMsg.style.fontWeight = "600";
-        successMsg.style.marginTop = "10px";
-        this.appendChild(successMsg);
+      emailjs
+        .sendForm("service_q7ljbaj", "template_cuyqd0g", this)
+        .then(() => {
+          const oldMsg = this.querySelector(".success-message");
+          if (oldMsg) oldMsg.remove();
 
-        this.reset();
-      })
-      .catch((error) => {
-        console.error("❌ EmailJS error details:", error);
-        alert("Something went wrong. Please check console for details.");
-      });
-  });
+          const successMsg = document.createElement("p");
+          successMsg.textContent = "✅ Message sent successfully!";
+          successMsg.className = "success-message";
+          successMsg.style.color = "green";
+          successMsg.style.fontWeight = "600";
+          successMsg.style.marginTop = "10px";
+          this.appendChild(successMsg);
 
-
-
+          this.reset();
+        })
+        .catch((error) => {
+          console.error("❌ EmailJS error details:", error);
+          alert("Something went wrong. Please check console for details.");
+        });
+    });
+};
 
 // ===== OPEN RESUME PAGE =====
 function openResumePage() {
