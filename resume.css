@@ -1,0 +1,113 @@
+/* ====== Base Styling ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #eef3f8, #dce6f1);
+  color: #2b2b2b;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ====== Page Wrapper ====== */
+.resume-page {
+  width: 100%;
+  height: 100vh;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ====== Header ====== */
+.resume-header {
+  background: #0a192f;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 30px;
+  flex-shrink: 0;
+}
+
+.header-content h1 {
+  font-size: 1.7rem;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #b0c4de;
+  margin-top: 4px;
+}
+
+.back-btn {
+  text-decoration: none;
+  background: #007bff;
+  color: #fff;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.back-btn:hover {
+  background: #005fcc;
+  transform: translateY(-2px);
+}
+
+/* ====== Resume Frame ====== */
+.resume-frame {
+  flex: 1;
+  background: #f9fbfd;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.resume-container {
+  width: 100%;
+  height: calc(100vh - 110px); /* subtract header + footer height */
+  background: #fff;
+  overflow: hidden;
+}
+
+.resume-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  overflow: auto;
+  pointer-events: auto; /* ✅ allow scroll and view */
+}
+
+/* ====== Footer ====== */
+.resume-footer {
+  text-align: center;
+  padding: 12px;
+  background: #0a192f;
+  color: #b0c4de;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 768px) {
+  .header-content h1 {
+    font-size: 1.3rem;
+  }
+
+  .back-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+
+  .resume-container {
+    height: calc(100vh - 130px);
+  }
+}
