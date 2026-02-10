@@ -1,10 +1,11 @@
-// EmailJS settings — replace with your own if you rotate keys in the dashboard
+// EmailJS settings - replace with your own if you rotate keys in the dashboard
 const EMAILJS_PUBLIC_KEY = "ZCF0kUzP2t4A3aMKu";
 const EMAILJS_SERVICE_ID = "service_o30jwvl";
 const EMAILJS_TEMPLATE_ID = "template_dn9bnl8";
 
 document.addEventListener("DOMContentLoaded", () => {
   attachProfilePopup();
+  attachNavToggle();
 
   const contactForm = document.getElementById("contact-form");
   if (contactForm) {
@@ -29,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // ===== PROFILE MENU POPUP =====
 function attachProfilePopup() {
-  const menuBtn = document.getElementById("menu-btn");
+  const menuBtn = document.getElementById("profile-chip");
   const profilePopup = document.getElementById("profile-popup");
   if (!menuBtn || !profilePopup) return;
 
@@ -40,6 +41,32 @@ function attachProfilePopup() {
   document.addEventListener("click", (e) => {
     if (!menuBtn.contains(e.target) && !profilePopup.contains(e.target)) {
       profilePopup.classList.remove("active");
+    }
+  });
+}
+
+// ===== NAV TOGGLE (mobile) =====
+function attachNavToggle() {
+  const toggle = document.getElementById("nav-toggle");
+  const navLinks = document.getElementById("nav-links");
+  if (!toggle || !navLinks) return;
+
+  toggle.addEventListener("click", () => {
+    navLinks.classList.toggle("open");
+    toggle.classList.toggle("open");
+  });
+
+  navLinks.querySelectorAll("a").forEach((link) =>
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      toggle.classList.remove("open");
+    })
+  );
+
+  document.addEventListener("click", (e) => {
+    if (!navLinks.contains(e.target) && !toggle.contains(e.target)) {
+      navLinks.classList.remove("open");
+      toggle.classList.remove("open");
     }
   });
 }

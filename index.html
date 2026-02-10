@@ -1,219 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
+  <meta charset="UTF-8" />
+  <meta name="google-site-verification" content="zmyRQlHcxY2B0vjo0k3Fxl55CtlU12WZOYG7Bw_4Nr8" />
 
-<meta name="google-site-verification" content="zmyRQlHcxY2B0vjo0k3Fxl55CtlU12WZOYG7Bw_4Nr8" />
-<!-- ✅ Basic SEO -->
-<title>Nilesh Krishnamurthy | Portfolio Website</title>
-<meta name="description" content="Explore the professional portfolio of Nilesh Krishnamurthy — Electronics and Communication Engineer skilled in AI, FPGA Design, and Full Stack Web Development. View projects, resume, and contact details.">
-<meta name="keywords" content="Nilesh Krishnamurthy, Portfolio, ECE Engineer, FPGA, AI, Full Stack Developer, Projects, Resume, Contact, Web Developer, India">
-<meta name="author" content="Nilesh Krishnamurthy">
-<meta name="robots" content="index, follow">
+  <!-- ✅ Basic SEO -->
+  <title>Nilesh Krishnamurthy | Portfolio Website</title>
+  <meta name="description" content="Explore the professional portfolio of Nilesh Krishnamurthy - Electronics and Communication Engineer skilled in AI, FPGA Design, and Full Stack Web Development. View projects, resume, and contact details.">
+  <meta name="keywords" content="Nilesh Krishnamurthy, Portfolio, ECE Engineer, FPGA, AI, Full Stack Developer, Projects, Resume, Contact, Web Developer, India">
+  <meta name="author" content="Nilesh Krishnamurthy">
+  <meta name="robots" content="index, follow">
 
-<!-- ✅ Social Media (Open Graph) -->
-<meta property="og:title" content="Nilesh Krishnamurthy | Portfolio Website">
-<meta property="og:description" content="Discover my projects, skills, and resume — a showcase of AI, FPGA, and full-stack development expertise.">
-<meta property="og:image" content="https://nilesh248004.github.io/PORTFOLIO/assets/profile.jpg">
-<meta property="og:url" content="https://nilesh248004.github.io/PORTFOLIO/">
-<meta property="og:type" content="website">
+  <!-- ✅ Social Media (Open Graph) -->
+  <meta property="og:title" content="Nilesh Krishnamurthy | Portfolio Website">
+  <meta property="og:description" content="Discover my projects, skills, and resume - a showcase of AI, FPGA, and full-stack development expertise.">
+  <meta property="og:image" content="https://nilesh248004.github.io/PORTFOLIO/assets/profile.jpg">
+  <meta property="og:url" content="https://nilesh248004.github.io/PORTFOLIO/">
+  <meta property="og:type" content="website">
 
-<!-- ✅ Favicon -->
-<link rel="icon" type="image/png" href="assets/profile.jpg">
-<link rel="stylesheet" href="style.css">
-
-
+  <!-- ✅ Fonts & Favicon -->
+  <link rel="icon" type="image/png" href="assets/profile.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="navbar">
-    <div class="left-section">
-      <div class="profile-container">
-        <img src="assets/myimg.jpg" alt="Profile" class="profile-pic" />
-        <span class="profile-text">PROFILE</span>
+    <div class="container nav-inner">
+      <div class="brand">
+        <div class="brand-logo">NK</div>
+        <div>
+          <p class="brand-name">Nilesh Krishnamurthy</p>
+          <p class="brand-role">ECE | AI | Full Stack</p>
+        </div>
+      </div>
 
-        <!-- Hamburger Icon near Profile -->
-        <button class="menu-btn" id="menu-btn">
+      <div class="nav-right">
+        <div class="profile-chip" id="profile-chip">
+          <img src="assets/myimg.jpg" alt="Profile" class="profile-pic" />
+          <span>Profile</span>
+        </div>
+
+        <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation">
           <span class="bar"></span>
           <span class="bar"></span>
           <span class="bar"></span>
         </button>
-      </div>
-    </div>
 
-    <div class="right-section">
-      <a href="#about">ABOUT</a>
-      <a href="#resume">RESUME</a>
-      <a href="#projects">PROJECTS</a>
-      <a href="#contact">CONTACT</a>
+        <nav class="nav-links" id="nav-links">
+          <a href="#about">About</a>
+          <a href="#resume">Resume</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+          <a class="btn-pill" href="#contact">Let's Talk</a>
+        </nav>
+      </div>
     </div>
   </header>
-  
-
-  <!-- About Section -->
-  <section id="about" class="about-section">
-    <div class="about-container">
-      <div class="about-image">
-        <img src="assets/profile.jpg" alt="About Me" />
-      </div>
-
-      <div class="about-text">
-        <h1>About Me</h1>
-        <p>
-          Hello! I’m <strong>Nilesh K</strong>, a final year ECE student passionate about 
-          <strong>software technologies</strong> and <strong>real-world problem solving</strong>.
-        </p>
-        <p>
-          I work on <strong>web-development tools</strong>,having knowledge on <strong>problem-solving</strong>, and 
-          <strong>cloud-based systems</strong> — building scalable and interactive solutions that 
-          combine creativity with technology.
-        </p>
-        <p>
-          My projects focus on <strong>real-time performance</strong>, <strong>clean UI/UX</strong>, 
-          and strong backend architecture using modern tech stacks.
-        </p>
-      </div>
-    </div>
-  </section>
-<!-- Resume Section -->
-<section id="resume" class="resume-section">
-  <div class="resume-container">
-    <!-- Left: Resume Info -->
-    <div class="resume-info">
-      <h1>My Resume</h1>
-      <p>
-        Here’s a preview of my resume showcasing my academic background,
-        technical expertise, and skills reflecting my passion
-        for technology and innovation.
-      </p>
-
-      <!-- Opens resume.html in a new browser tab -->
-      <button class="preview-btn" onclick="openResumePage()">👁️ Preview Resume</button>
-    </div>
-
-    <!-- Right: Skills Icons -->
-    <div class="skills-container">
-      <h2>Tech Skills & Tools</h2>
-      <div class="skills-grid">
-        <div class="skill-card"><img src="assets/html.jpg" alt="HTML" /><span>HTML</span></div>
-        <div class="skill-card"><img src="assets/css.jpg" alt="CSS" /><span>CSS</span></div>
-        <div class="skill-card"><img src="assets/js.jpg" alt="JavaScript" /><span>JavaScript</span></div>
-        <div class="skill-card"><img src="assets/java.png" alt="Java" /><span>Java</span></div>
-        <div class="skill-card"><img src="assets/c.png" alt="C" /><span>C</span></div>
-        <div class="skill-card"><img src="assets/react.jpg" alt="React.js" /><span>React.js</span></div>
-        <div class="skill-card"><img src="assets/node.jpg" alt="Node.js" /><span>Node.js</span></div>
-        <div class="skill-card"><img src="assets/python.jpg" alt="Python" /><span>Python</span></div>
-        <div class="skill-card"><img src="assets/dataanalytics.png" alt="Data analytics" /><span>Data analytics</span></div>
-        <div class="skill-card"><img src="assets/sql.png" alt="DBMS" /><span>DBMS</span></div>
-        <div class="skill-card"><img src="assets/vercel.png" alt="Vercel" /><span>Vercel</span></div>
-        <div class="skill-card"><img src="assets/git.jpg" alt="Git" /><span>Git</span></div>
-        <div class="skill-card"><img src="assets/vscode.jpg" alt="VS Code" /><span>VS Code</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- Projects Section -->
-<section id="projects" class="projects-section">
-  <div class="projects-container">
-    <h1>My Projects</h1>
-    <p class="projects-intro">
-      A selection of my works showcasing creativity, logic, and full-stack development.
-    </p>
-
-    <div class="projects-grid">
-      <!-- Project 1 -->
-      <div class="project-card">
-        <img src="assets/acadbook.jpg" alt="AcadBook" class="project-img" />
-        <div class="project-info">
-          <h3>AcadBook</h3>
-          <p>
-            A full-stack lab slot booking system for students and faculty, leveraging React for a dynamic and intuitive user interface,
-  Node.js and booking logic, and MongoDB as the flexible NoSQL database.Manages chaos and human interruption for timely events.
-          </p>
-          <a href="https://github.com/Nilesh248004/Acad-Booker" target="_blank" class="project-btn">
-            🔗 View Project
-          </a>
-        </div>
-      </div>
-
-      <!-- Project 2 -->
-      <div class="project-card">
-        <img src="assets/mcp.jpg" alt="NL 2 SQL 2 NL" class="project-img" />
-        <div class="project-info">
-          <h3>NL 2 SQL 2 NL</h3>
-          <p>
-            Natural Language to SQL and Back using MCP (Model Context Protocol)
-  that converts natural language queries into SQL commands and translates SQL outputs back to human-readable text using Model 
-Context Protocol (MCP).
-          </p>
-          <a href="https://github.com/Nilesh248004/NL2SQL2NL" target="_blank" class="project-btn">
-            🔗 View Project
-          </a>
-        </div>
-      </div>
-
-      <!-- Project 3 -->
-      <div class="project-card">
-        <img src="assets/folio.jpg" alt="PORTFOLIO" class="project-img" />
-        <div class="project-info">
-          <h3>My Portfolio</h3>
-          <p>
-            A portfolio website built with HTML, CSS, and JavaScript leverages HTML for structuring content, CSS for visually styling and laying out elements, and JavaScript for adding interactive features and dynamic behavior
-          </p>
-          <a href="https://github.com/Nilesh248004/PORTFOLIO" target="_blank" class="project-btn">
-            🔗 View Project
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-  <!-- Contact Section -->
-<section id="contact" class="contact-section">
-  <div class="contact-container">
-    <div class="contact-info">
-      <h1>Contact Me</h1>
-      <p><h2>Have a question, collaboration idea, or want to get in touch?</h2></p>
-      <p>
-        Feel free to drop a message — I’m always open to discuss exciting tech ideas and opportunities.
-      </p>
-
-      <div class="contact-details">
-  <p><strong>Email:</strong> 
-    <a href="mailto:nileshkrishnamurthy@gmail.com">nileshkrishnamurthy@gmail.com</a>
-  </p>
-
-  <p><strong>LinkedIn:</strong> 
-    <a href="https://www.linkedin.com/in/nileshkrishnamurthy/" target="_blank">
-      linkedin.com/in/nileshkrishnamurthy
-    </a>
-  </p>
-
-  <p><strong>Location:</strong> 🌍 OOTY, The Nilgiris, Tamil Nadu, India</p>
-</div>
-
-    </div>
-
-    <form id="contact-form" class="contact-form">
-  <input type="text" name="from_name" placeholder="Your Name" required />
-  <input type="email" name="from_email" placeholder="Your Email" required />
-  <textarea name="message" placeholder="Your Message" required></textarea>
-  <button type="submit">Send Message</button>
-</form>
-
-  </div>
-</section>
 
   <div class="profile-popup" id="profile-popup">
-        BACHELOR's DEGREE :
-        <P><strong> BANNARI AMMAN INSTITUTE OF TECHNOLOGY.</strong><br /></P>
-        HIGHER SECONDARY EDUCATION :
-        <P><strong> INTERNATIONAL COMMUNITY SCHOOL and JUNIOR COLLEGE.</strong><br /></P>
-        SECONDARY EDUCATION :
-        <P><strong> ST.THOMAS ENGLISH HIGH SCHOOL.</strong><br /></P>
-        
+    <p><strong>Bachelor's Degree</strong><br/>Bannari Amman Institute of Technology</p>
+    <p><strong>Higher Secondary</strong><br/>International Community School &amp; Junior College</p>
+    <p><strong>Secondary</strong><br/>St. Thomas English High School</p>
+  </div>
+
+  <main>
+    <!-- Hero / About -->
+    <section id="about" class="section hero-section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Electronics | AI | Full Stack</p>
+          <h1>Building reliable systems with thoughtful UI and pragmatic code.</h1>
+          <p class="lede">
+            Hello! I'm <strong>Nilesh K</strong>, an ECE student crafting web tools, intelligent systems,
+            and cloud-backed experiences that stay fast, secure, and human-friendly.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Web Dev</span>
+            <span class="pill">MCP / AI</span>
+            <span class="pill">FPGA Curious</span>
+            <span class="pill">Cloud &amp; DB</span>
+          </div>
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="openResumePage()">View Resume</button>
+            <a class="btn-ghost" href="#projects">See Projects</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-card">
+              <p class="stat-number">10+</p>
+              <p class="stat-label">Projects Delivered</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-number">5</p>
+              <p class="stat-label">End-to-End Apps</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-number">24/7</p>
+              <p class="stat-label">Curiosity &amp; Iteration</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="portrait-frame">
+            <img src="assets/profile.jpg" alt="About me portrait" />
+            <span class="portrait-glow"></span>
+          </div>
+        </div>
       </div>
+    </section>
+
+    <!-- Resume -->
+    <section id="resume" class="section resume-section">
+      <div class="container resume-grid">
+        <div class="resume-info card">
+          <p class="eyebrow">Resume</p>
+          <h2>Experience, skills, and impact in one page.</h2>
+          <p>
+            A snapshot of academics, practical projects, and the stack I use to move from idea to launch.
+          </p>
+          <button class="btn-primary" onclick="openResumePage()">👁️ Preview Resume</button>
+        </div>
+
+        <div class="skills card">
+          <div class="skills-header">
+            <h3>Tech Skills &amp; Tools</h3>
+            <p class="muted">Comfortable across the stack, from UI polish to backend data.</p>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-card"><img src="assets/html.jpg" alt="HTML" /><span>HTML</span></div>
+            <div class="skill-card"><img src="assets/css.jpg" alt="CSS" /><span>CSS</span></div>
+            <div class="skill-card"><img src="assets/js.jpg" alt="JavaScript" /><span>JavaScript</span></div>
+            <div class="skill-card"><img src="assets/react.jpg" alt="React.js" /><span>React.js</span></div>
+            <div class="skill-card"><img src="assets/node.jpg" alt="Node.js" /><span>Node.js</span></div>
+            <div class="skill-card"><img src="assets/java.png" alt="Java" /><span>Java</span></div>
+            <div class="skill-card"><img src="assets/python.jpg" alt="Python" /><span>Python</span></div>
+            <div class="skill-card"><img src="assets/dataanalytics.png" alt="Data analytics" /><span>Data analytics</span></div>
+            <div class="skill-card"><img src="assets/sql.png" alt="DBMS" /><span>DBMS</span></div>
+            <div class="skill-card"><img src="assets/vercel.png" alt="Vercel" /><span>Vercel</span></div>
+            <div class="skill-card"><img src="assets/git.jpg" alt="Git" /><span>Git</span></div>
+            <div class="skill-card"><img src="assets/vscode.jpg" alt="VS Code" /><span>VS Code</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Selected Work</p>
+          <h2>Projects that mix logic, UX, and delivery.</h2>
+          <p class="muted">Each build sharpened how I design, test, and ship dependable products.</p>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card">
+            <img src="assets/acadbook.jpg" alt="AcadBook" class="project-img" />
+            <div class="project-info">
+              <div class="project-top">
+                <h3>AcadBook</h3>
+                <span class="pill pill-outline">React / Node / MongoDB</span>
+              </div>
+              <p>
+                Full-stack lab slot booking for students and faculty with conflict handling and intuitive UX.
+              </p>
+              <a href="https://github.com/Nilesh248004/Acad-Booker" target="_blank" class="project-btn">
+                🔗 View Project
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img src="assets/mcp.jpg" alt="NL2SQL2NL" class="project-img" />
+            <div class="project-info">
+              <div class="project-top">
+                <h3>NL 2 SQL 2 NL</h3>
+                <span class="pill pill-outline">MCP / SQL / AI</span>
+              </div>
+              <p>
+                Converts natural language to SQL and back, creating clear, human-readable insights from data.
+              </p>
+              <a href="https://github.com/Nilesh248004/NL2SQL2NL" target="_blank" class="project-btn">
+                🔗 View Project
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <img src="assets/folio.jpg" alt="Portfolio" class="project-img" />
+            <div class="project-info">
+              <div class="project-top">
+                <h3>My Portfolio</h3>
+                <span class="pill pill-outline">HTML / CSS / JS</span>
+              </div>
+              <p>
+                Lightweight, fast, and accessible personal site with smooth interactions and EmailJS.
+              </p>
+              <a href="https://github.com/Nilesh248004/PORTFOLIO" target="_blank" class="project-btn">
+                🔗 View Project
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section contact-section">
+      <div class="container contact-grid">
+        <div class="contact-info card">
+          <p class="eyebrow">Contact</p>
+          <h2>Let's build something together.</h2>
+          <p class="muted">Have a question or collaboration idea? I'd love to hear it.</p>
+
+          <div class="contact-details">
+            <p><strong>Email:</strong> <a href="mailto:nileshkrishnamurthy@gmail.com">nileshkrishnamurthy@gmail.com</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nileshkrishnamurthy/" target="_blank">linkedin.com/in/nileshkrishnamurthy</a></p>
+            <p><strong>Location:</strong> Ooty, The Nilgiris, Tamil Nadu, India</p>
+          </div>
+        </div>
+
+        <form id="contact-form" class="contact-form card">
+          <div class="field">
+            <label for="from_name">Your Name</label>
+            <input id="from_name" type="text" name="from_name" placeholder="Jane Doe" required />
+          </div>
+          <div class="field">
+            <label for="from_email">Your Email</label>
+            <input id="from_email" type="email" name="from_email" placeholder="you@email.com" required />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell me about your idea..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary full">Send Message</button>
+        </form>
+      </div>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
