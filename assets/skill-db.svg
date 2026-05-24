@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Database icon">
+  <rect width="96" height="96" rx="18" fill="#00e1ff" fill-opacity="0.14"/>
+  <path d="M24 30c0-8 48-8 48 0v36c0 8-48 8-48 0V30Z" fill="none" stroke="#00e1ff" stroke-width="6"/>
+  <path d="M24 30c0 8 48 8 48 0M24 48c0 8 48 8 48 0M24 66c0 8 48 8 48 0" fill="none" stroke="#00e1ff" stroke-width="6"/>
+</svg>

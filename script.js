@@ -6,6 +6,7 @@ const skillCount = document.querySelector('[data-count="skills"]');
 const projectCount = document.querySelector('[data-count="projects"]');
 const contactForm = document.querySelector("#contact-form");
 const formStatus = document.querySelector(".form-status");
+const skillTiles = document.querySelectorAll(".skill-tile");
 
 const emailJsConfig = {
   serviceId: "service_xz409jc",
@@ -14,7 +15,7 @@ const emailJsConfig = {
 };
 
 if (skillCount) {
-  skillCount.textContent = document.querySelectorAll(".skill").length;
+  skillCount.textContent = skillTiles.length;
 }
 
 if (projectCount) {
@@ -66,6 +67,43 @@ if (contactForm && formStatus) {
     }
   });
 }
+
+skillTiles.forEach((tile) => {
+  const skillName = tile.querySelector("span")?.textContent?.trim();
+  const skillLevel = tile.querySelector("small")?.textContent?.trim();
+  const speechText = tile.dataset.speech?.trim();
+
+  if (!skillName || !skillLevel) return;
+
+  tile.setAttribute("role", "button");
+  tile.setAttribute("tabindex", "0");
+  tile.setAttribute("aria-label", `Play audio for ${skillName}.`);
+
+  const playSkillAudio = () => {
+    if (!("speechSynthesis" in window)) return;
+
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(
+      speechText || `${skillName}. My current level is ${skillLevel}.`
+    );
+    utterance.rate = 0.92;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+
+    utterance.addEventListener("start", () => tile.classList.add("speaking"));
+    utterance.addEventListener("end", () => tile.classList.remove("speaking"));
+    utterance.addEventListener("error", () => tile.classList.remove("speaking"));
+
+    window.speechSynthesis.speak(utterance);
+  };
+
+  tile.addEventListener("click", playSkillAudio);
+  tile.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    playSkillAudio();
+  });
+});
 
 menuToggle.addEventListener("click", () => {
   const isOpen = navLinks.classList.toggle("open");
