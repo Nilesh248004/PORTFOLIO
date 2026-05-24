@@ -26,6 +26,7 @@ body {
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: var(--bg);
   color: var(--text);
+  line-height: 1.5;
   overflow-x: hidden;
 }
 
@@ -91,6 +92,7 @@ textarea {
 .menu-toggle {
   background: transparent;
   border: 0;
+  cursor: pointer;
   display: none;
   height: 40px;
   padding: 0;
@@ -102,7 +104,16 @@ textarea {
   display: block;
   height: 2px;
   margin: 7px auto;
+  transition: transform 180ms ease, opacity 180ms ease;
   width: 22px;
+}
+
+.menu-toggle[aria-expanded="true"] span:first-child {
+  transform: translateY(4.5px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:last-child {
+  transform: translateY(-4.5px) rotate(-45deg);
 }
 
 .section-shell {
@@ -111,6 +122,7 @@ textarea {
   overflow: hidden;
   padding: 88px clamp(20px, 5vw, 80px);
   position: relative;
+  width: 100%;
 }
 
 .hero {
@@ -118,8 +130,16 @@ textarea {
   display: grid;
   gap: 48px;
   grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
-  min-height: 700px;
+  min-height: calc(100svh - 72px);
   padding-top: 72px;
+}
+
+.hero-content,
+.profile-card,
+.project-card,
+.skill-tile,
+.info-card {
+  min-width: 0;
 }
 
 .ambient {
@@ -778,6 +798,7 @@ h1 {
   .nav-links {
     background: rgba(12, 12, 16, 0.98);
     border-bottom: 1px solid var(--line);
+    box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
     display: none;
     flex-direction: column;
     gap: 18px;
@@ -786,6 +807,7 @@ h1 {
     position: absolute;
     right: 0;
     top: 72px;
+    z-index: 24;
   }
 
   .nav-links.open {
@@ -830,6 +852,11 @@ h1 {
     right: 0;
   }
 
+  .avatar-ring {
+    height: min(48vw, 360px);
+    width: min(38vw, 290px);
+  }
+
   .project-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -861,11 +888,16 @@ h1 {
   }
 
   .nav-links {
+    gap: 16px;
     top: 66px;
   }
 
   .nav-links a {
+    display: inline-flex;
     font-size: 16px;
+    justify-content: center;
+    min-height: 42px;
+    width: 100%;
   }
 
   .nav-links .hire-link {
@@ -873,17 +905,27 @@ h1 {
   }
 
   .section-shell {
-    padding: 72px max(18px, env(safe-area-inset-left)) 72px max(18px, env(safe-area-inset-right));
+    padding: 64px max(18px, env(safe-area-inset-left)) 64px max(18px, env(safe-area-inset-right));
   }
 
   .hero {
+    gap: 34px;
     min-height: auto;
-    padding-top: 44px;
+    padding-top: 34px;
+  }
+
+  .ambient {
+    opacity: 0.65;
   }
 
   .dot-grid {
     opacity: 0.28;
     right: -260px;
+  }
+
+  .skill-showcase::before,
+  .skill-showcase::after {
+    opacity: 0.65;
   }
 
   h1 {
@@ -898,6 +940,18 @@ h1 {
   .hero-copy {
     font-size: 15px;
     line-height: 1.65;
+  }
+
+  .avatar-ring {
+    height: min(82vw, 330px);
+    min-height: 300px;
+    width: min(68vw, 260px);
+  }
+
+  .avatar {
+    border-radius: 28px;
+    height: calc(100% - 14px);
+    width: calc(100% - 14px);
   }
 
   .hero-actions .btn {
@@ -954,7 +1008,14 @@ h1 {
   }
 
   .skill-showcase {
-    padding: 26px;
+    border-radius: 8px;
+    padding: 22px;
+  }
+
+  .skill-domain h3 {
+    font-size: 16px;
+    gap: 10px;
+    margin-bottom: 14px;
   }
 
   .skill-tile-grid {
@@ -1014,11 +1075,15 @@ h1 {
     font-size: 38px;
   }
 
+  .section-title {
+    margin-bottom: 36px;
+  }
+
   .avatar-ring {
-    height: min(88vw, 350px);
-    min-height: 310px;
-    min-width: 220px;
-    width: min(76vw, 270px);
+    height: min(82vw, 300px);
+    min-height: 270px;
+    min-width: 210px;
+    width: min(72vw, 245px);
   }
 
   .avatar {
@@ -1048,6 +1113,7 @@ h1 {
   }
 
   .metrics {
+    gap: 10px;
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
