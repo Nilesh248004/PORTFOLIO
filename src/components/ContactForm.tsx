@@ -109,7 +109,7 @@ export default function ContactForm() {
       </div>
       <div className="field">
         <label htmlFor="message">Your message</label>
-        <textarea id="message" name="message" placeholder="Tell me about your product or team, and what you need help with." required minLength={10} maxLength={3000} />
+        <textarea id="message" name="message" required minLength={10} maxLength={3000} />
       </div>
       {/* honeypot: real visitors never see or fill this */}
       <div className="hp" aria-hidden="true">
