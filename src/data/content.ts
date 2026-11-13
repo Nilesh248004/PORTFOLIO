@@ -13,7 +13,10 @@ export const profile = {
   github: 'https://github.com/Nilesh248004',
 };
 
-export const stats = [
+// A big number (or short word) with a label under it. Numbers count up when scrolled into view.
+export type Stat = { value: number | string; suffix?: string; label: string };
+
+export const stats: Stat[] = [
   { value: 3, suffix: '', label: 'End-to-end projects across web, AI and DevOps' },
   { value: 6, suffix: '-node', label: 'Redis cluster automated with zero-downtime upgrades' },
   { value: 1000, suffix: '', label: 'Seeded test keys used to verify every cluster operation' },
@@ -31,6 +34,7 @@ export type Project = {
   problem: string;
   approach: string[];
   highlights: string[];
+  stats?: Stat[]; // optional row of key facts shown under the project title
   stack: string[];
   repo?: string;
 };
@@ -58,6 +62,8 @@ export const projects: Project[] = [
     // TODO: add measurable results here and a "Highlights" card appears on the project page automatically,
     // e.g. 'Automated N APIs with Karate', 'Cut proposal creation from X to Y', 'Onboarded N hotels in the pilot'.
     highlights: [],
+    // TODO: add real numbers to show a stat row on this page, e.g.
+    // stats: [{ value: 120, label: 'APIs covered by Karate automation' }, { value: 5, label: 'Hotels onboarded in the pilot' }],
     stack: ['Karate', 'API testing', 'JSON schema validation'],
   },
   {
@@ -79,6 +85,11 @@ export const projects: Project[] = [
       'Idempotent, single-command workflows verified against 1,000 seeded deterministic test keys.',
       'A continuous availability monitor verifies read continuity throughout upgrades.',
       'Zero data loss on scale-in, with structured timestamped logging for full traceability.',
+    ],
+    stats: [
+      { value: 6, suffix: '-node', label: 'Redis cluster automated with zero-downtime upgrades' },
+      { value: 1000, label: 'Seeded test keys used to verify every cluster operation' },
+      { value: 0, label: 'Data lost on scale-in, because slots migrate before a node is removed' },
     ],
     stack: ['Bash', 'Ansible', 'Docker', 'Podman', 'Redis Cluster'],
   },
@@ -102,6 +113,11 @@ export const projects: Project[] = [
       'Graceful fallback logic for ambiguous queries and schema mismatches.',
       'Fault-tolerant, independently deployable architecture.',
     ],
+    stats: [
+      { value: 2, label: 'Independently deployable services: API on Render, frontend on Vercel' },
+      { value: 'SSE', label: 'Server-Sent Events stream the answer as it is generated' },
+      { value: 'MCP', label: 'Built on the Model Context Protocol, running queries on a live database' },
+    ],
     stack: ['MCP', 'SSE', 'SQL', 'Render', 'Vercel'],
   },
   {
@@ -124,6 +140,11 @@ export const projects: Project[] = [
       'Reduced intervention time from days to seconds.',
       'Delivered measurable impact to real faculty users.',
       'Built for scalability and low maintenance overhead.',
+    ],
+    stats: [
+      { value: 3, suffix: '-tier', label: 'ReactJS frontend, Python backend and PostgreSQL database' },
+      { value: 'Seconds', label: 'Intervention time, down from days with manual spreadsheets' },
+      { value: 0, label: 'Frontend or pipeline changes needed to retrain the risk model each semester' },
     ],
     stack: ['ReactJS', 'Python', 'PostgreSQL', 'Machine learning'],
   },

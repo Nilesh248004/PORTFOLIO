@@ -1005,6 +1005,9 @@ html[data-skip-loader='1'] .loader {
   line-height: 1.04;
   text-wrap: balance;
 }
+.proj-stats {
+  margin-top: 48px;
+}
 .proj-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr));

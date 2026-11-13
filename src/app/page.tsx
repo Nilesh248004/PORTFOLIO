@@ -5,6 +5,7 @@ import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import ScrollEffects from '@/components/ScrollEffects';
 import ContactForm from '@/components/ContactForm';
+import Stats from '@/components/Stats';
 import { experience, profile, projects, skills, stats } from '@/data/content';
 
 const RESUME_FILE = 'Nilesh_K_Resume.pdf';
@@ -34,17 +35,7 @@ export default function Home() {
         <Hero resumeHref={resumeHref} calendarUrl={calendarUrl} />
 
         <section aria-label="Highlights" className="section">
-          <div className="stats" data-stagger>
-            {stats.map((s) => (
-              <div key={s.label} className="stat glass">
-                <b>
-                  <span data-count={s.value}>{s.value.toLocaleString('en-US')}</span>
-                  {s.suffix && <em>{s.suffix}</em>}
-                </b>
-                <p>{s.label}</p>
-              </div>
-            ))}
-          </div>
+          <Stats items={stats} />
         </section>
 
         <section id="work" className="section">

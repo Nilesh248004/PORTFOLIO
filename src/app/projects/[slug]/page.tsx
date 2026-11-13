@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Nav from '@/components/Nav';
 import ScrollEffects from '@/components/ScrollEffects';
+import Stats from '@/components/Stats';
 import { profile, projects } from '@/data/content';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -58,6 +59,12 @@ export default async function ProjectPage({ params }: Props) {
           <p className="font-display" style={{ marginTop: 24, fontSize: 24, fontWeight: 600, color: 'var(--accent)' }} data-reveal>
             {p.result}
           </p>
+        )}
+
+        {p.stats && p.stats.length > 0 && (
+          <section className="proj-stats" aria-label="Key facts">
+            <Stats items={p.stats} />
+          </section>
         )}
 
         <div className="proj-grid" data-stagger>
