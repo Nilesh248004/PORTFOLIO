@@ -876,6 +876,65 @@ html[data-skip-loader='1'] .loader {
   gap: 12px;
   margin-top: 28px;
 }
+.call-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px 48px;
+  margin-top: 24px;
+  padding: 36px 48px;
+  border-radius: 28px;
+}
+.call-card-copy {
+  flex: 1 1 320px;
+  min-width: 0;
+}
+.call-card h3 {
+  margin: 10px 0 0;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: clamp(26px, 3.4vw, 34px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.call-card-copy > p:last-child {
+  max-width: 460px;
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-soft);
+}
+.call-card-actions {
+  display: flex;
+  flex: 1 1 320px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  min-width: 0;
+}
+.call-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.call-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+  background: var(--tag-bg);
+  font-size: 14px;
+  color: var(--text);
+}
+.call-chip:hover {
+  border-color: var(--accent);
+  background: var(--glass-hover);
+}
 .form {
   flex: 1 1 360px;
   min-width: 0;
@@ -1022,10 +1081,60 @@ html[data-skip-loader='1'] .loader {
   margin-top: 56px;
 }
 
-.nav-book {
-  color: var(--accent);
-  font-weight: 600;
+.nav-menu {
+  position: relative;
+}
+.nav-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.nav-menu-btn[aria-expanded='true'] {
   opacity: 1;
+  background: rgba(96, 165, 250, 0.16);
+}
+.nav-menu-btn[aria-expanded='true'] svg {
+  transform: rotate(180deg);
+}
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  z-index: 110;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 280px;
+  padding: 8px;
+  border-radius: 20px;
+  background: var(--nav-bg);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow);
+}
+.nav-dropdown a {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 16px;
+  border-radius: 14px;
+}
+.nav-dropdown a:hover,
+.nav-dropdown a:focus-visible {
+  background: rgba(96, 165, 250, 0.16);
+}
+.nav-dropdown strong {
+  font-size: 15px;
+  font-weight: 600;
+}
+.nav-dropdown span {
+  font-size: 13px;
+  color: var(--muted);
 }
 
 /* ---------- book a call ---------- */
@@ -1258,6 +1367,10 @@ html.anim [data-stagger] > .in {
   }
   .skill {
     padding: 22px;
+  }
+  .call-card {
+    padding: 28px 22px;
+    border-radius: 24px;
   }
   .contact {
     padding: 36px 22px;

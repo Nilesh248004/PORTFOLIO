@@ -78,11 +78,11 @@ Visitors book calls on the **`/book`** page, which shows a [Cal.com](https://cal
 
 **How it behaves**
 
-- Every "Book a call" button (hero, nav, contact section) goes to `/book`. Link straight to one call type with `/book?type=qa-help`.
+- The nav's **Contact** dropdown offers "Reach out by mail" (the contact form) and "Reach out by call" (`/book`). The hero's Book a call button and the call card under the contact form also go to `/book`; the card's shortcuts open a specific call type. Link straight to one call type with `/book?type=qa-help`.
 - The calendar follows the site's dark/light toggle, works on phones, and the call types are keyboard accessible.
 - If the calendar has not loaded after 12 seconds, visitors see your email address instead.
 - To hide a call type, remove it from `callTypes`. Slugs that do not exist in Cal.com show a "not found" page inside the calendar, so keep the two lists in step.
-- While `NEXT_PUBLIC_CAL_USERNAME` is empty: `/book` returns 404 on the live site (a setup note shows in `npm run dev`), the Book a call buttons are hidden and the hero button reads "Contact me" and goes to the contact form.
+- While `NEXT_PUBLIC_CAL_USERNAME` is empty: `/book` returns 404 on the live site (a setup note shows in `npm run dev`), the Contact menu is a plain link, the call card is hidden, and the hero button reads "Contact me" and goes to the contact form.
 - Privacy: the calendar loads from Cal.com's servers, and the page says so.
 
 ## Deploy to Vercel

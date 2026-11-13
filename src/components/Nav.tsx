@@ -12,6 +12,68 @@ const links = [
   { id: 'contact', label: 'Contact' },
 ];
 
+// "Contact" dropdown: reach out by mail (the contact form) or by call (the booking page).
+// A disclosure button that opens on click; Escape, a click outside, or tabbing away closes it.
+function ContactMenu({ prefix, active }: { prefix: string; active: boolean }) {
+  const [open, setOpen] = useState(false);
+  const root = useRef<HTMLDivElement>(null);
+  const button = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (e: PointerEvent) => {
+      if (!root.current?.contains(e.target as Node)) setOpen(false);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== 'Escape') return;
+      setOpen(false);
+      button.current?.focus();
+    };
+    document.addEventListener('pointerdown', onPointerDown);
+    document.addEventListener('keydown', onKey);
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown);
+      document.removeEventListener('keydown', onKey);
+    };
+  }, [open]);
+
+  return (
+    <div
+      className="nav-menu"
+      ref={root}
+      onBlur={(e) => {
+        if (!root.current?.contains(e.relatedTarget as Node | null)) setOpen(false);
+      }}
+    >
+      <button
+        ref={button}
+        type="button"
+        className={`nav-link nav-menu-btn${active ? ' active' : ''}`}
+        aria-expanded={open}
+        aria-controls="contact-menu"
+        onClick={() => setOpen((o) => !o)}
+      >
+        Contact
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </button>
+      {open && (
+        <div id="contact-menu" className="nav-dropdown">
+          <a href={`${prefix}#contact`} onClick={() => setOpen(false)}>
+            <strong>Reach out by mail</strong>
+            <span>Send me a message</span>
+          </a>
+          <Link href="/book" onClick={() => setOpen(false)}>
+            <strong>Reach out by call</strong>
+            <span>Book a time to talk</span>
+          </Link>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Nav({ home = true }: { home?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState('');
@@ -86,15 +148,14 @@ export default function Nav({ home = true }: { home?: boolean }) {
           </Link>
           <div className="nav-right">
             <nav className="nav glass" aria-label="Primary">
-              {links.map((l) => (
-                <a key={l.id} className={`nav-link${active === l.id ? ' active' : ''}`} href={`${prefix}#${l.id}`} aria-current={active === l.id ? 'true' : undefined}>
-                  {l.label}
-                </a>
-              ))}
-              {bookingEnabled && (
-                <Link className="nav-link nav-book" href="/book">
-                  Book a call
-                </Link>
+              {links.map((l) =>
+                l.id === 'contact' && bookingEnabled ? (
+                  <ContactMenu key={l.id} prefix={prefix} active={active === l.id} />
+                ) : (
+                  <a key={l.id} className={`nav-link${active === l.id ? ' active' : ''}`} href={`${prefix}#${l.id}`} aria-current={active === l.id ? 'true' : undefined}>
+                    {l.label}
+                  </a>
+                ),
               )}
             </nav>
             <button className="icon-btn glass" onClick={toggleTheme} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`} type="button">
@@ -118,15 +179,22 @@ export default function Nav({ home = true }: { home?: boolean }) {
         </div>
       </header>
       <div id="mobile-menu" className={`mobile-menu${open ? ' open' : ''}`} aria-hidden={!open}>
-        {links.map((l) => (
-          <a key={l.id} href={`${prefix}#${l.id}`} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
-            {l.label}
-          </a>
-        ))}
+        {links
+          .filter((l) => !(l.id === 'contact' && bookingEnabled))
+          .map((l) => (
+            <a key={l.id} href={`${prefix}#${l.id}`} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
+              {l.label}
+            </a>
+          ))}
         {bookingEnabled && (
-          <Link href="/book" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
-            Book a call
-          </Link>
+          <>
+            <a href={`${prefix}#contact`} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
+              Reach out by mail
+            </a>
+            <Link href="/book" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
+              Reach out by call
+            </Link>
+          </>
         )}
       </div>
     </>
