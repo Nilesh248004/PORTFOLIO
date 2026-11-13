@@ -6,6 +6,7 @@ import Hero from '@/components/Hero';
 import ScrollEffects from '@/components/ScrollEffects';
 import ContactForm from '@/components/ContactForm';
 import { experience, profile, projects, skills } from '@/data/content';
+import { bookingEnabled } from '@/lib/booking';
 
 const RESUME_FILE = 'Nilesh_K_Resume.pdf';
 
@@ -21,7 +22,6 @@ export default function Home() {
   // The resume button only appears once you drop the PDF into /public.
   const hasResume = fs.existsSync(path.join(process.cwd(), 'public', RESUME_FILE));
   const resumeHref = hasResume ? `/${RESUME_FILE}` : undefined;
-  const calendarUrl = process.env.NEXT_PUBLIC_CALENDAR_URL || undefined;
 
   return (
     <div className="page">
@@ -31,7 +31,7 @@ export default function Home() {
 
       <Nav />
       <main id="main" className="container">
-        <Hero resumeHref={resumeHref} calendarUrl={calendarUrl} />
+        <Hero resumeHref={resumeHref} />
 
         <section id="work" className="section">
           <p className="eyebrow" data-reveal>Selected work</p>
@@ -113,10 +113,10 @@ export default function Home() {
                 <h2>Let&apos;s make your product dependable</h2>
                 <p>Have a product that needs testing, or a team that needs an engineer who cares about quality? Send a message and I will get back to you.</p>
                 <div className="contact-links">
-                  {calendarUrl && (
-                    <a className="btn btn-primary" href={calendarUrl} target="_blank" rel="noopener noreferrer">
+                  {bookingEnabled && (
+                    <Link className="btn btn-primary" href="/book">
                       Book a call
-                    </a>
+                    </Link>
                   )}
                   <a className="btn btn-ghost btn-sm" href={`mailto:${profile.email}`}>
                     {profile.email}

@@ -11,6 +11,8 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // `next dev` would otherwise generate an AGENTS.md file in the project root every time it runs.
+  agentRules: false,
   images: { formats: ['image/avif', 'image/webp'] },
   async headers() {
     return [{ source: '/:path*', headers: securityHeaders }];

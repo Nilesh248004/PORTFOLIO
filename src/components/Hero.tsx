@@ -3,7 +3,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import Link from 'next/link';
 import { profile } from '@/data/content';
+import { bookingEnabled } from '@/lib/booking';
 
 const HeroScene = dynamic(() => import('./HeroScene'), { ssr: false });
 
@@ -36,7 +38,7 @@ function useTyping(words: string[]) {
   return text;
 }
 
-export default function Hero({ resumeHref, calendarUrl }: { resumeHref?: string; calendarUrl?: string }) {
+export default function Hero({ resumeHref }: { resumeHref?: string }) {
   const typed = useTyping(profile.roles);
   const [mode, setMode] = useState<'pending' | 'webgl' | 'css'>('pending');
 
@@ -67,9 +69,15 @@ export default function Hero({ resumeHref, calendarUrl }: { resumeHref?: string;
           <a className="btn btn-primary" href="#work">
             See my work
           </a>
-          <a className="btn btn-ghost" href={calendarUrl || '#contact-form'} {...(calendarUrl ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
-            Book a call
-          </a>
+          {bookingEnabled ? (
+            <Link className="btn btn-ghost" href="/book">
+              Book a call
+            </Link>
+          ) : (
+            <a className="btn btn-ghost" href="#contact-form">
+              Contact me
+            </a>
+          )}
           {resumeHref && (
             <a className="btn btn-ghost" href={resumeHref} download>
               Download resume

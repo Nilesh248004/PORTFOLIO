@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { profile } from '@/data/content';
+import { bookingEnabled } from '@/lib/booking';
 
 const links = [
   { id: 'work', label: 'Work' },
@@ -90,6 +91,11 @@ export default function Nav({ home = true }: { home?: boolean }) {
                   {l.label}
                 </a>
               ))}
+              {bookingEnabled && (
+                <Link className="nav-link nav-book" href="/book">
+                  Book a call
+                </Link>
+              )}
             </nav>
             <button className="icon-btn glass" onClick={toggleTheme} aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`} type="button">
               {theme === 'dark' ? (
@@ -117,6 +123,11 @@ export default function Nav({ home = true }: { home?: boolean }) {
             {l.label}
           </a>
         ))}
+        {bookingEnabled && (
+          <Link href="/book" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
+            Book a call
+          </Link>
+        )}
       </div>
     </>
   );

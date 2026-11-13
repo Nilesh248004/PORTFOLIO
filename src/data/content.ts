@@ -17,6 +17,17 @@ export const profile = {
 // Numbers count up; words scramble then settle; `stream` types the label in word by word.
 export type Stat = { value: number | string; suffix?: string; label: string; stream?: boolean };
 
+// The kinds of call visitors can book on the /book page. `slug` must match an event type you create in Cal.com
+// (its URL ends in /your-username/<slug>). Remove an entry to hide that call type.
+export type CallType = { slug: string; title: string; blurb: string };
+
+export const callTypes: CallType[] = [
+  { slug: 'hiring-chat', title: 'Hiring or recruiter chat', blurb: 'Talk through a role and how I could fit your team.' },
+  { slug: 'qa-help', title: 'QA or testing help', blurb: 'Test strategy, API automation or quality for a product or team.' },
+  { slug: 'career-advice', title: 'Career advice or mentoring', blurb: 'Questions about getting started in QA and software.' },
+  { slug: 'intro-chat', title: 'General intro chat', blurb: 'Say hello or talk about anything else.' },
+];
+
 export type Project = {
   slug: string;
   title: string;

@@ -47,9 +47,36 @@ The recipient address is set in the EmailJS dashboard, in the template's "To Ema
 
 **If sending fails**, visitors see a clear message and a button to send the same text from their own email app. The failure reason (status and text from EmailJS) is also printed in the browser console, which is the quickest way to debug a template or key problem.
 
-## Calendar button
+## Call booking (Cal.com)
 
-Set `NEXT_PUBLIC_CALENDAR_URL` (Calendly, Cal.com, Google appointment page). The "Book a call" buttons then open it. Without it, the hero button scrolls to the contact form.
+Visitors book calls on the **`/book`** page, which shows a [Cal.com](https://cal.com) calendar inside the site. Cal.com handles availability, time zones, Google Calendar sync, meeting links, email invites and reminders. The page is off until you set `NEXT_PUBLIC_CAL_USERNAME`.
+
+**Set it up (about 15 minutes):**
+
+1. Create a Cal.com account (it has a free plan; check its current limits) and note your username.
+2. Settings → Calendars: connect Google Calendar, so busy times are blocked and bookings are added to it.
+3. Availability: set your time zone, working days and hours.
+4. Create four event types whose URL slugs are exactly these (or edit `callTypes` in `src/data/content.ts` to match your own):
+
+   | Slug | Call type |
+   |---|---|
+   | `hiring-chat` | Hiring or recruiter chat |
+   | `qa-help` | QA or testing help |
+   | `career-advice` | Career advice or mentoring |
+   | `intro-chat` | General intro chat |
+
+   For each one set the length and the location (for example Google Meet). Under Limits, set the minimum notice, a buffer between calls and how far ahead people can book.
+5. Set `NEXT_PUBLIC_CAL_USERNAME` to your username, in `.env.local` for local work and in your host's environment variables for the live site, then redeploy.
+6. Open `/book` and book a test call using a different email address.
+
+**How it behaves**
+
+- Every "Book a call" button (hero, nav, contact section) goes to `/book`. Link straight to one call type with `/book?type=qa-help`.
+- The calendar follows the site's dark/light toggle, works on phones, and the call types are keyboard accessible.
+- If the calendar has not loaded after 12 seconds, visitors see your email address instead.
+- To hide a call type, remove it from `callTypes`. Slugs that do not exist in Cal.com show a "not found" page inside the calendar, so keep the two lists in step.
+- While `NEXT_PUBLIC_CAL_USERNAME` is empty: `/book` returns 404 on the live site (a setup note shows in `npm run dev`), the Book a call buttons are hidden and the hero button reads "Contact me" and goes to the contact form.
+- Privacy: the calendar loads from Cal.com's servers, and the page says so.
 
 ## Deploy to Vercel
 
@@ -82,7 +109,7 @@ After deploying, test your link at https://www.linkedin.com/post-inspector/ and 
 - Three.js glass slabs (BUILD / TEST / SHIP) in the hero that follow the mouse, spread on scroll and bob gently. They are the only animated card-like element: the portrait and project cards stay still on hover (CSS fallback on phones and without WebGL)
 - GSAP scroll reveals, staggered cards and animated counters
 - Dark/light toggle (remembered), sticky nav with active-section highlight, scroll progress bar
-- Typing role effect, project detail pages, styled 404 page, working contact form
+- Typing role effect, project detail pages, styled 404 page, working contact form, call booking page
 - Self-hosted fonts via `next/font` (no request to Google at page load)
 - Security headers (`nosniff`, referrer policy, permissions policy, frame protection)
 - Accessibility: skip link, visible focus, semantic landmarks, reduced-motion support, Escape closes the mobile menu. axe-core reports no violations on the home and project pages in both themes.
@@ -91,8 +118,8 @@ After deploying, test your link at https://www.linkedin.com/post-inspector/ and 
 
 ```
 src/app          pages, SEO files, 404
-src/components   Nav, Hero, HeroScene (Three.js), ScrollEffects (GSAP), Stats, ContactForm, Loader
+src/components   Nav, Hero, HeroScene (Three.js), ScrollEffects (GSAP), Stats, ContactForm, BookingPicker, Loader
 src/data         content.ts  <- edit this
-src/lib          site.ts (public site URL), emailjs.ts (contact form config)
+src/lib          site.ts (public site URL), emailjs.ts (contact form config), booking.ts (booking on/off)
 public           photo.png (+ add Nilesh_K_Resume.pdf)
 ```
