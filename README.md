@@ -79,7 +79,7 @@ After deploying, test your link at https://www.linkedin.com/post-inspector/ and 
 ## What's in the box
 
 - Loading intro (once per session, skipped for repeat visitors and reduced-motion users)
-- Three.js glass slabs in the hero that move with the page scroll only; they never follow the mouse, and the portrait and project cards do not tilt on hover (CSS fallback on phones and without WebGL)
+- Three.js glass slabs (BUILD / TEST / SHIP) in the hero that follow the mouse, spread on scroll and bob gently. They are the only animated card-like element: the portrait and project cards stay still on hover (CSS fallback on phones and without WebGL)
 - GSAP scroll reveals, staggered cards and animated counters
 - Dark/light toggle (remembered), sticky nav with active-section highlight, scroll progress bar
 - Typing role effect, project detail pages, styled 404 page, working contact form
