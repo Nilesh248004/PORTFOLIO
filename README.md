@@ -23,7 +23,7 @@ Search the file for `TODO` to find what still needs confirming:
 
 - `since` is your start date at Hippo Video (currently Aug 2026).
 - The Hippo Video project has an empty `highlights: []`. Add real, measurable results (APIs automated, time saved, hotels onboarded) and a "Highlights" card appears on its page automatically.
-- Each project can have a row of big-number cards under its title: add `stats: [{ value: 6, suffix: '-node', label: '...' }]` to the project. A number counts up when scrolled into view, and text such as `'SSE'` is shown as written. The Hippo Video project has none yet because it needs real figures (see the TODO).
+- Each project can have a row of big-number cards under its title: add `stats: [{ value: 6, suffix: '-node', label: '...' }]` to the project. Numbers count up when scrolled into view, words such as `'SSE'` scramble and then settle, and `stream: true` makes the label appear word by word. Visitors who prefer reduced motion see the final text with no animation. The Hippo Video cards only restate your bullets: replace them with real figures (see the TODO).
 - Add `repo: 'https://github.com/...'` to a project to link its source. Without it the button links to your GitHub profile.
 - Check the CGPA in `experience`. The older PDF resume said 7.48, this site says 7.74.
 

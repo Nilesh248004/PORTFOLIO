@@ -13,8 +13,9 @@ export const profile = {
   github: 'https://github.com/Nilesh248004',
 };
 
-// A big number (or short word) with a label under it. Numbers count up when scrolled into view.
-export type Stat = { value: number | string; suffix?: string; label: string };
+// A big number (or short word) with a label under it, animated when scrolled into view.
+// Numbers count up; words scramble then settle; `stream` types the label in word by word.
+export type Stat = { value: number | string; suffix?: string; label: string; stream?: boolean };
 
 export type Project = {
   slug: string;
@@ -56,8 +57,13 @@ export const projects: Project[] = [
     // TODO: add measurable results here and a "Highlights" card appears on the project page automatically,
     // e.g. 'Automated N APIs with Karate', 'Cut proposal creation from X to Y', 'Onboarded N hotels in the pilot'.
     highlights: [],
-    // TODO: add real numbers to show a stat row on this page, e.g.
-    // stats: [{ value: 120, label: 'APIs covered by Karate automation' }, { value: 5, label: 'Hotels onboarded in the pilot' }],
+    // TODO: these only restate your bullets. Replace them with real numbers when you have them, e.g.
+    // { value: 120, label: 'APIs covered by Karate automation' }, { value: 5, label: 'Hotels onboarded in the pilot' }.
+    stats: [
+      { value: 2, label: 'Schemas validated per API call: the request and the response' },
+      { value: 'Karate', label: 'Framework behind the end-to-end API automation' },
+      { value: 'Hotels', label: 'Piloted the onboarding of big-brand hotels' },
+    ],
     stack: ['Karate', 'API testing', 'JSON schema validation'],
   },
   {
@@ -109,7 +115,7 @@ export const projects: Project[] = [
     ],
     stats: [
       { value: 2, label: 'Independently deployable services: API on Render, frontend on Vercel' },
-      { value: 'SSE', label: 'Server-Sent Events stream the answer as it is generated' },
+      { value: 'SSE', label: 'Server-Sent Events stream the answer as it is generated', stream: true },
       { value: 'MCP', label: 'Built on the Model Context Protocol, running queries on a live database' },
     ],
     stack: ['MCP', 'SSE', 'SQL', 'Render', 'Vercel'],
