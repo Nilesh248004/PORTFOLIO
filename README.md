@@ -110,8 +110,28 @@ Canonical links, the sitemap, robots.txt and share previews use `NEXT_PUBLIC_SIT
 
 ## SEO and social preview
 
-Titles, descriptions, Open Graph/Twitter cards, a generated share image (`/opengraph-image`), sitemap, robots.txt and Person structured data are included.
-After deploying, test your link at https://www.linkedin.com/post-inspector/ and submit `https://your-domain/sitemap.xml` in Google Search Console.
+Titles, descriptions, Open Graph/Twitter cards, a generated share image (`/opengraph-image`), canonical links and Person structured data are included.
+After deploying, test your link at https://www.linkedin.com/post-inspector/.
+
+## Sitemap and Google Search Console
+
+`/sitemap.xml` lists the home page, every project page and `/book` (when booking is on), and `/robots.txt` points search engines to it. Both are generated from `src/data/content.ts`, so new projects are added automatically. The addresses use `NEXT_PUBLIC_SITE_URL`, or your Vercel production domain when that is empty.
+
+To get the site into Google:
+
+1. Open https://search.google.com/search-console and add a **URL prefix** property with your live address.
+2. Choose the **HTML tag** method. Google shows a tag like `<meta name="google-site-verification" content="abc123..." />`.
+3. In Vercel, add the environment variable `GOOGLE_SITE_VERIFICATION` with just the `content` value (`abc123...`), then redeploy.
+4. Back in Search Console, click **Verify**, then open **Sitemaps** and submit `sitemap.xml`.
+
+## CDN and caching
+
+On Vercel the whole site is served from Vercel's global CDN automatically; there is nothing to switch on.
+
+- Pages are built ahead of time and cached at the CDN until the next deploy.
+- Scripts, styles and fonts under `/_next/static` are cached permanently (their file names change when their content does).
+- `next.config.mjs` adds caching for the files that would otherwise be re-checked on every request: the portrait, resume, favicon and share image for a day, and the sitemap and robots.txt for an hour. Each can be served from the cache while a fresh copy is fetched in the background.
+- The portrait is resized and converted to AVIF/WebP by Vercel's image optimisation and cached as well.
 
 ## Analytics
 

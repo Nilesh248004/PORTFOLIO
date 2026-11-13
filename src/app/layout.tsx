@@ -30,6 +30,9 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image', title: `${profile.name} | ${profile.title}`, description },
   robots: { index: true, follow: true },
+  // Google Search Console "HTML tag" verification. Set GOOGLE_SITE_VERIFICATION to the code from the
+  // content="..." part of the tag Google gives you; the tag is only added when it is set.
+  ...(process.env.GOOGLE_SITE_VERIFICATION ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } } : {}),
 };
 
 export const viewport: Viewport = {
