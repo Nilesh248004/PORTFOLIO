@@ -81,14 +81,14 @@ export default function Hero({ resumeHref, calendarUrl }: { resumeHref?: string;
           {profile.pitch}
         </p>
         <div className="hero-actions" data-reveal>
-          <a className="btn btn-primary" data-magnetic href="#work">
+          <a className="btn btn-primary" href="#work">
             See my work
           </a>
-          <a className="btn btn-ghost" data-magnetic href={calendarUrl || '#contact-form'} {...(calendarUrl ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
+          <a className="btn btn-ghost" href={calendarUrl || '#contact-form'} {...(calendarUrl ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
             Book a call
           </a>
           {resumeHref && (
-            <a className="btn btn-ghost" data-magnetic href={resumeHref} download>
+            <a className="btn btn-ghost" href={resumeHref} download>
               Download resume
             </a>
           )}

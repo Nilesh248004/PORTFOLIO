@@ -52,7 +52,7 @@ export default function Home() {
           <h2 className="h2" data-reveal>Projects built from problem to deployment</h2>
           <div className="tiles" data-stagger>
             {projects.map((p) => (
-              <Link key={p.slug} href={`/projects/${p.slug}`} className={`tile glass ${p.tone}${p.wide ? ' wide' : ''}`} data-magnetic-off>
+              <Link key={p.slug} href={`/projects/${p.slug}`} className={`tile glass ${p.tone}${p.wide ? ' wide' : ''}`}>
                 <div className="tags">
                   {p.tags.map((t) => (
                     <span key={t} className="tag">{t}</span>
@@ -128,17 +128,17 @@ export default function Home() {
                 <p>Have a product that needs testing, or a team that needs an engineer who cares about quality? Send a message and I will get back to you.</p>
                 <div className="contact-links">
                   {calendarUrl && (
-                    <a className="btn btn-primary" data-magnetic href={calendarUrl} target="_blank" rel="noopener noreferrer">
+                    <a className="btn btn-primary" href={calendarUrl} target="_blank" rel="noopener noreferrer">
                       Book a call
                     </a>
                   )}
-                  <a className="btn btn-ghost btn-sm" data-magnetic href={`mailto:${profile.email}`}>
+                  <a className="btn btn-ghost btn-sm" href={`mailto:${profile.email}`}>
                     {profile.email}
                   </a>
-                  <a className="btn btn-ghost btn-sm" data-magnetic href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+                  <a className="btn btn-ghost btn-sm" href={profile.linkedin} target="_blank" rel="noopener noreferrer">
                     LinkedIn
                   </a>
-                  <a className="btn btn-ghost btn-sm" data-magnetic href={profile.github} target="_blank" rel="noopener noreferrer">
+                  <a className="btn btn-ghost btn-sm" href={profile.github} target="_blank" rel="noopener noreferrer">
                     GitHub
                   </a>
                 </div>

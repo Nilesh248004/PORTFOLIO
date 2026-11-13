@@ -78,7 +78,6 @@ After deploying, test your link at https://www.linkedin.com/post-inspector/ and 
 - Loading intro (once per session, skipped for repeat visitors and reduced-motion users)
 - Three.js glass slabs in the hero that react to cursor and scroll (CSS fallback on phones and without WebGL)
 - GSAP scroll reveals, staggered cards and animated counters
-- Custom cursor and magnetic buttons (desktop with a mouse only)
 - Dark/light toggle (remembered), sticky nav with active-section highlight, scroll progress bar
 - Typing role effect, project detail pages, styled 404 page, working contact form
 - Self-hosted fonts via `next/font` (no request to Google at page load)

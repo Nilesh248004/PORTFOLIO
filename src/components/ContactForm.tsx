@@ -55,7 +55,7 @@ export default function ContactForm() {
         <label htmlFor="company">Company</label>
         <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
       </div>
-      <button className="btn btn-primary" data-magnetic type="submit" disabled={status.kind === 'sending'}>
+      <button className="btn btn-primary" type="submit" disabled={status.kind === 'sending'}>
         {status.kind === 'sending' ? 'Sending...' : 'Send message'}
       </button>
       <p className={`form-msg ${status.kind === 'ok' ? 'ok' : status.kind === 'err' ? 'err' : ''}`} role="status" aria-live="polite">

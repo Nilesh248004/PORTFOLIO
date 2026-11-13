@@ -1067,51 +1067,6 @@ html[data-skip-loader='1'] .loader {
   color: var(--muted);
 }
 
-/* ---------- cursor ---------- */
-.cursor-dot,
-.cursor-ring {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 250;
-  pointer-events: none;
-  border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.25s;
-}
-.cursor-dot {
-  width: 8px;
-  height: 8px;
-  margin: -4px 0 0 -4px;
-  background: var(--accent);
-}
-.cursor-ring {
-  width: 38px;
-  height: 38px;
-  margin: -19px 0 0 -19px;
-  border: 1.5px solid var(--accent);
-  transition: opacity 0.25s, width 0.25s, height 0.25s, margin 0.25s, background 0.25s;
-}
-.cursor-ring.hover {
-  width: 60px;
-  height: 60px;
-  margin: -30px 0 0 -30px;
-  background: rgba(96, 165, 250, 0.14);
-}
-html.has-cursor .cursor-dot,
-html.has-cursor .cursor-ring {
-  opacity: 1;
-}
-html.has-cursor,
-html.has-cursor a,
-html.has-cursor button {
-  cursor: none;
-}
-html.has-cursor input,
-html.has-cursor textarea {
-  cursor: text;
-}
-
 /* ---------- reveal ---------- */
 html.anim [data-reveal],
 html.anim [data-stagger] > * {

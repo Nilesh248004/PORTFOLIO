@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono, Space_Grotesk } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/react';
 import Loader from '@/components/Loader';
-import Cursor from '@/components/Cursor';
 import { profile } from '@/data/content';
 import { siteUrl } from '@/lib/site';
 import './globals.css';
@@ -39,7 +38,7 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-const bootScript = `(function(){try{var d=document.documentElement;var t=localStorage.getItem('theme')||'dark';d.dataset.theme=t;var r=matchMedia('(prefers-reduced-motion: reduce)').matches;d.classList.add(r?'rm':'anim');if(sessionStorage.getItem('intro')||r){d.dataset.skipLoader='1'}if(matchMedia('(hover: hover) and (pointer: fine)').matches&&!r){d.classList.add('fine')}}catch(e){}})();`;
+const bootScript = `(function(){try{var d=document.documentElement;var t=localStorage.getItem('theme')||'dark';d.dataset.theme=t;var r=matchMedia('(prefers-reduced-motion: reduce)').matches;d.classList.add(r?'rm':'anim');if(sessionStorage.getItem('intro')||r){d.dataset.skipLoader='1'}}catch(e){}})();`;
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -65,7 +64,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           Skip to content
         </a>
         <Loader />
-        <Cursor />
         {children}
         <Analytics />
       </body>
