@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, type CSSProperties } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -101,13 +101,13 @@ export default function Hero({ resumeHref }: { resumeHref?: string }) {
           {mode === 'webgl' && <HeroScene onFail={fail} />}
           {mode === 'css' && (
             <div className="slabs-css" aria-hidden="true">
-              <div className="slab" style={{ transform: 'translateZ(0)' }}>
+              <div className="slab" style={{ transform: 'translateZ(0)', '--sh': 255 } as CSSProperties}>
                 <span>BUILD</span>
               </div>
-              <div className="slab" style={{ transform: 'translateZ(28px)' }}>
+              <div className="slab" style={{ transform: 'translateZ(28px)', '--sh': 150 } as CSSProperties}>
                 <span>TEST</span>
               </div>
-              <div className="slab" style={{ transform: 'translateZ(56px)', background: 'linear-gradient(145deg,rgba(37,99,235,.6),rgba(56,189,248,.2))' }}>
+              <div className="slab" style={{ transform: 'translateZ(56px)', '--sh': 350 } as CSSProperties}>
                 <span>SHIP</span>
               </div>
             </div>

@@ -28,6 +28,15 @@ Search the file for `TODO` to find what still needs confirming:
 - Add `repo: 'https://github.com/...'` to a project to link its source. Without it the button links to your GitHub profile.
 - Check the CGPA in `experience`. The older PDF resume said 7.48, this site says 7.74.
 
+## Colours
+
+The site uses one palette of eight colours, defined in `src/lib/palette.ts`: blue, violet, pink, red, orange, amber, green and teal.
+
+- Every section, project, timeline entry, skill group and call type takes one of them. Change it with the `hue` fields in `src/data/content.ts`; the section colours are set in `src/app/page.tsx`.
+- Everything accent-coloured inside follows that colour: borders, card tints, chips, links, bullets and the nav highlight (which matches the section you are reading).
+- The brand gradient (blue, violet, pink) is used for the logo, the main buttons and the role line under your name. The progress bar and footer line run through the whole palette, and the BUILD / TEST / SHIP slabs are blue, green and pink.
+- Colours are OKLCH, which keeps lightness even across hues, so text stays readable on every colour in both themes. All text was checked against WCAG AA contrast.
+
 ## Add your resume (download button)
 
 Drop your PDF into `public/` named **`Nilesh_K_Resume.pdf`**. The "Download resume" button appears automatically once the file exists.
@@ -118,6 +127,7 @@ After deploying, test your link at https://www.linkedin.com/post-inspector/ and 
 - GSAP scroll reveals, staggered cards and animated counters
 - Dark/light toggle (remembered), sticky nav with active-section highlight, scroll progress bar
 - Typing role effect, project detail pages, styled 404 page, working contact form, call booking page
+- "Spectrum" colour system: each section, project and card has its own colour from one palette (see Colours above)
 - Self-hosted fonts via `next/font` (no request to Google at page load)
 - Security headers (`nosniff`, referrer policy, permissions policy, frame protection)
 - Accessibility: skip link, visible focus, semantic landmarks, reduced-motion support, Escape closes the mobile menu. axe-core reports no violations on the home and project pages in both themes.
@@ -128,6 +138,6 @@ After deploying, test your link at https://www.linkedin.com/post-inspector/ and 
 src/app          pages, SEO files, 404
 src/components   Nav, Hero, HeroScene (Three.js), ScrollEffects (GSAP), Stats, ContactForm, BookingPicker, Loader
 src/data         content.ts  <- edit this
-src/lib          site.ts (public site URL), emailjs.ts (contact form config), booking.ts (booking on/off)
+src/lib          site.ts (public site URL), emailjs.ts (contact form config), booking.ts (booking on/off), palette.ts (colours)
 public           photo.png (+ add Nilesh_K_Resume.pdf)
 ```

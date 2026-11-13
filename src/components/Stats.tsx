@@ -9,7 +9,7 @@ export default function Stats({ items }: { items: Stat[] }) {
   return (
     <div className="stats" data-stagger>
       {items.map((s) => (
-        <div key={s.label} className="stat glass">
+        <div key={s.label} className="stat glass hue">
           <b>
             {typeof s.value === 'number' ? (
               <span data-count={s.value}>{s.value.toLocaleString('en-US')}</span>

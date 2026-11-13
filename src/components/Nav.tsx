@@ -1,16 +1,19 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import Link from 'next/link';
 import { profile } from '@/data/content';
 import { bookingEnabled } from '@/lib/booking';
+import { hues } from '@/lib/palette';
 
+// Each link takes the colour of the section it leads to (the same hues the sections use on the page).
 const links = [
-  { id: 'work', label: 'Work' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'skills', label: 'Skills' },
-  { id: 'contact', label: 'Contact' },
+  { id: 'work', label: 'Work', hue: hues.blue },
+  { id: 'experience', label: 'Experience', hue: hues.violet },
+  { id: 'skills', label: 'Skills', hue: hues.teal },
+  { id: 'contact', label: 'Contact', hue: hues.pink },
 ];
+const hueStyle = (h: number) => ({ '--h': h }) as CSSProperties;
 
 // "Contact" dropdown: reach out by mail (the contact form) or by call (the booking page).
 // A disclosure button that opens on click; Escape, a click outside, or tabbing away closes it.
@@ -39,7 +42,8 @@ function ContactMenu({ prefix, active }: { prefix: string; active: boolean }) {
 
   return (
     <div
-      className="nav-menu"
+      className="nav-menu hue"
+      style={hueStyle(hues.pink)}
       ref={root}
       onBlur={(e) => {
         if (!root.current?.contains(e.relatedTarget as Node | null)) setOpen(false);
@@ -60,11 +64,11 @@ function ContactMenu({ prefix, active }: { prefix: string; active: boolean }) {
       </button>
       {open && (
         <div id="contact-menu" className="nav-dropdown">
-          <a href={`${prefix}#contact`} onClick={() => setOpen(false)}>
+          <a className="hue" style={hueStyle(hues.pink)} href={`${prefix}#contact`} onClick={() => setOpen(false)}>
             <strong>Reach out by mail</strong>
             <span>Send me a message</span>
           </a>
-          <Link href="/book" onClick={() => setOpen(false)}>
+          <Link className="hue" style={hueStyle(hues.green)} href="/book" onClick={() => setOpen(false)}>
             <strong>Reach out by call</strong>
             <span>Book a time to talk</span>
           </Link>
@@ -152,7 +156,7 @@ export default function Nav({ home = true }: { home?: boolean }) {
                 l.id === 'contact' && bookingEnabled ? (
                   <ContactMenu key={l.id} prefix={prefix} active={active === l.id} />
                 ) : (
-                  <a key={l.id} className={`nav-link${active === l.id ? ' active' : ''}`} href={`${prefix}#${l.id}`} aria-current={active === l.id ? 'true' : undefined}>
+                  <a key={l.id} className={`nav-link hue${active === l.id ? ' active' : ''}`} style={hueStyle(l.hue)} href={`${prefix}#${l.id}`} aria-current={active === l.id ? 'true' : undefined}>
                     {l.label}
                   </a>
                 ),
@@ -182,16 +186,16 @@ export default function Nav({ home = true }: { home?: boolean }) {
         {links
           .filter((l) => !(l.id === 'contact' && bookingEnabled))
           .map((l) => (
-            <a key={l.id} href={`${prefix}#${l.id}`} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
+            <a key={l.id} className="hue" style={hueStyle(l.hue)} href={`${prefix}#${l.id}`} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
               {l.label}
             </a>
           ))}
         {bookingEnabled && (
           <>
-            <a href={`${prefix}#contact`} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
+            <a className="hue" style={hueStyle(hues.pink)} href={`${prefix}#contact`} onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
               Reach out by mail
             </a>
-            <Link href="/book" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
+            <Link className="hue" style={hueStyle(hues.green)} href="/book" onClick={() => setOpen(false)} tabIndex={open ? 0 : -1}>
               Reach out by call
             </Link>
           </>

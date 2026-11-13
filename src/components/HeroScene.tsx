@@ -32,9 +32,12 @@ export default function HeroScene({ onFail }: { onFail: () => void }) {
     const key = new THREE.DirectionalLight(0xbfd8ff, 2.4);
     key.position.set(4, 8, 5);
     scene.add(key);
-    const rim = new THREE.PointLight(0x38bdf8, 30, 24);
+    const rim = new THREE.PointLight(0x6366f1, 30, 24);
     rim.position.set(-4, 2, 3);
     scene.add(rim);
+    const rim2 = new THREE.PointLight(0xec4899, 22, 24);
+    rim2.position.set(4, 1, 3);
+    scene.add(rim2);
 
     const group = new THREE.Group();
     scene.add(group);
@@ -48,9 +51,12 @@ export default function HeroScene({ onFail }: { onFail: () => void }) {
     const monoFamily = monoVar || 'ui-monospace, monospace';
 
     const labels = ['BUILD', 'TEST', 'SHIP'];
+    // One colour per slab: blue to build, green when the tests pass, pink to ship.
+    const slabColors = [0x3b82f6, 0x22c55e, 0xec4899];
+    const edgeColors = [0x93c5fd, 0x86efac, 0xf9a8d4];
     const slabs = labels.map((label, i) => {
       const mat = new THREE.MeshPhysicalMaterial({
-        color: i === 2 ? 0x3b82f6 : 0x2563eb,
+        color: slabColors[i],
         transparent: true,
         opacity: i === 2 ? 0.62 : 0.38,
         roughness: 0.15,
@@ -59,7 +65,7 @@ export default function HeroScene({ onFail }: { onFail: () => void }) {
         clearcoatRoughness: 0.1,
       });
       const mesh = new THREE.Mesh(geo, mat);
-      const lineMat = new THREE.LineBasicMaterial({ color: 0x93c5fd, transparent: true, opacity: 0.9 });
+      const lineMat = new THREE.LineBasicMaterial({ color: edgeColors[i], transparent: true, opacity: 0.9 });
       mesh.add(new THREE.LineSegments(edgeGeo, lineMat));
 
       const c = document.createElement('canvas');

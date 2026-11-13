@@ -8,8 +8,22 @@ import ScrollEffects from '@/components/ScrollEffects';
 import ContactForm from '@/components/ContactForm';
 import { callTypes, experience, profile, projects, skills } from '@/data/content';
 import { bookingEnabled } from '@/lib/booking';
+import { hues } from '@/lib/palette';
 
 const RESUME_FILE = 'Nilesh_K_Resume.pdf';
+
+// Puts an element in one of the palette's colours: the `hue` class re-derives the accent colours from --h.
+const hueStyle = (h: number, extra?: CSSProperties) => ({ '--h': h, ...extra }) as CSSProperties;
+
+// The background glow: six soft colour pools down the page.
+const blobs = [
+  { top: -220, left: -160, size: 760, glow: 'a' },
+  { top: 240, right: -260, size: 820, glow: 'b' },
+  { top: 1150, left: -300, size: 760, glow: 'c' },
+  { top: 2150, right: -300, size: 800, glow: 'd' },
+  { top: 3050, left: -300, size: 760, glow: 'e' },
+  { top: 3900, right: -280, size: 720, glow: 'f' },
+];
 
 function Arrow() {
   return (
@@ -26,20 +40,25 @@ export default function Home() {
 
   return (
     <div className="page">
-      <div className="blob" aria-hidden="true" style={{ top: -220, left: -160, width: 760, height: 760, background: 'radial-gradient(circle,var(--glow-1),transparent 68%)' }} />
-      <div className="blob" aria-hidden="true" style={{ top: 240, right: -260, width: 820, height: 820, background: 'radial-gradient(circle,var(--glow-2),transparent 68%)' }} />
-      <div className="blob" aria-hidden="true" style={{ top: 2100, left: -300, width: 800, height: 800, background: 'radial-gradient(circle,var(--glow-3),transparent 68%)' }} />
+      {blobs.map((b) => (
+        <div
+          key={b.glow}
+          className="blob"
+          aria-hidden="true"
+          style={{ top: b.top, left: b.left, right: b.right, width: b.size, height: b.size, background: `radial-gradient(circle,var(--glow-${b.glow}),transparent 68%)` }}
+        />
+      ))}
 
       <Nav />
       <main id="main" className="container">
         <Hero resumeHref={resumeHref} />
 
-        <section id="work" className="section">
+        <section id="work" className="section hue" style={hueStyle(hues.blue)}>
           <p className="eyebrow" data-reveal>Selected work</p>
           <h2 className="h2" data-reveal>Projects built from problem to deployment</h2>
           <div className="tiles" data-stagger>
             {projects.map((p) => (
-              <Link key={p.slug} href={`/projects/${p.slug}`} className={`tile glass ${p.tone}${p.wide ? ' wide' : ''}`}>
+              <Link key={p.slug} href={`/projects/${p.slug}`} className={`tile glass hue${p.wide ? ' wide' : ''}`} style={hueStyle(p.hue)}>
                 <div className="tags">
                   {p.tags.map((t) => (
                     <span key={t} className="tag">{t}</span>
@@ -66,12 +85,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="experience" className="section">
+        <section id="experience" className="section hue" style={hueStyle(hues.violet)}>
           <p className="eyebrow" data-reveal>Experience and education</p>
           <h2 className="h2" data-reveal>Where I have built quality</h2>
           <div className="timeline" data-stagger>
             {experience.map((e, i) => (
-              <div key={e.title} className="t-row">
+              <div key={e.title} className="t-row hue" style={hueStyle(e.hue, { '--h2': experience[Math.min(i + 1, experience.length - 1)].hue } as CSSProperties)}>
                 <div className="t-rail" aria-hidden="true">
                   <span className="t-dot" />
                   {i < experience.length - 1 && <span className="t-line" />}
@@ -89,12 +108,12 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="skills" className="section">
+        <section id="skills" className="section hue" style={hueStyle(hues.teal)}>
           <p className="eyebrow" data-reveal>Toolkit</p>
           <h2 className="h2" data-reveal>What I work with</h2>
           <div className="skills" data-stagger>
             {skills.map((s) => (
-              <div key={s.group} className={`skill glass${s.featured ? ' featured' : ''}`} style={{ '--h': s.hue } as CSSProperties}>
+              <div key={s.group} className={`skill glass hue${s.featured ? ' featured' : ''}`} style={hueStyle(s.hue)}>
                 <h3>{s.group}</h3>
                 <div className="tags">
                   {s.items.map((i) => (
@@ -106,7 +125,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="contact" className="section" style={{ paddingBottom: 96 }}>
+        <section id="contact" className="section hue" style={hueStyle(hues.pink, { paddingBottom: 96 })}>
           <div className="contact glass" data-reveal>
             <div className="contact-grid">
               <div className="contact-copy">
@@ -130,7 +149,7 @@ export default function Home() {
           </div>
 
           {bookingEnabled && (
-            <div className="call-card glass" data-reveal>
+            <div className="call-card glass hue" style={hueStyle(hues.green)} data-reveal>
               <div className="call-card-copy">
                 <p className="eyebrow">Prefer to talk?</p>
                 <h3>Book a call</h3>
@@ -143,7 +162,7 @@ export default function Home() {
                 <ul className="call-chips" aria-label="Call types">
                   {callTypes.map((t) => (
                     <li key={t.slug}>
-                      <Link className="call-chip" href={`/book?type=${t.slug}`}>
+                      <Link className="call-chip hue" style={hueStyle(t.hue)} href={`/book?type=${t.slug}`}>
                         {t.title}
                       </Link>
                     </li>

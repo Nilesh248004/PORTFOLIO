@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -37,9 +38,9 @@ export default async function ProjectPage({ params }: Props) {
   const prev = projects[(i - 1 + projects.length) % projects.length];
 
   return (
-    <div className="page">
-      <div className="blob" aria-hidden="true" style={{ top: -200, left: -160, width: 700, height: 700, background: 'radial-gradient(circle,var(--glow-1),transparent 68%)' }} />
-      <div className="blob" aria-hidden="true" style={{ top: 400, right: -240, width: 700, height: 700, background: 'radial-gradient(circle,var(--glow-2),transparent 68%)' }} />
+    <div className="page hue" style={{ '--h': p.hue, '--ph': p.hue } as CSSProperties}>
+      <div className="blob" aria-hidden="true" style={{ top: -200, left: -160, width: 700, height: 700, background: 'radial-gradient(circle,var(--accent-glow),transparent 68%)' }} />
+      <div className="blob" aria-hidden="true" style={{ top: 400, right: -240, width: 700, height: 700, background: `radial-gradient(circle,oklch(0.58 0.2 ${p.hue + 70} / 0.26),transparent 68%)` }} />
       <Nav home={false} />
       <main id="main" className="container proj">
         <Link className="back" href="/#work">

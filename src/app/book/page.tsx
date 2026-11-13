@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -6,6 +7,7 @@ import ScrollEffects from '@/components/ScrollEffects';
 import BookingPicker from '@/components/BookingPicker';
 import { profile } from '@/data/content';
 import { bookingEnabled, calUsername } from '@/lib/booking';
+import { hues } from '@/lib/palette';
 
 const description = `Book a call with ${profile.name}: a hiring chat, help with QA and testing, career advice or a general intro.`;
 
@@ -22,9 +24,9 @@ export default function BookPage() {
   if (!bookingEnabled && !showSetupHint) notFound();
 
   return (
-    <div className="page">
-      <div className="blob" aria-hidden="true" style={{ top: -200, left: -160, width: 700, height: 700, background: 'radial-gradient(circle,var(--glow-1),transparent 68%)' }} />
-      <div className="blob" aria-hidden="true" style={{ top: 400, right: -240, width: 700, height: 700, background: 'radial-gradient(circle,var(--glow-2),transparent 68%)' }} />
+    <div className="page hue" style={{ '--h': hues.green } as CSSProperties}>
+      <div className="blob" aria-hidden="true" style={{ top: -200, left: -160, width: 700, height: 700, background: 'radial-gradient(circle,var(--accent-glow),transparent 68%)' }} />
+      <div className="blob" aria-hidden="true" style={{ top: 400, right: -240, width: 700, height: 700, background: 'radial-gradient(circle,var(--glow-a),transparent 68%)' }} />
       <Nav home={false} />
       <main id="main" className="container proj book">
         <Link className="back" href="/">
