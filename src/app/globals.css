@@ -929,6 +929,11 @@ html[data-skip-loader='1'] .loader {
   font-size: 16px;
   transition: border-color 0.2s, box-shadow 0.2s;
 }
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--muted-2);
+  opacity: 1;
+}
 .field textarea {
   min-height: 140px;
   resize: vertical;

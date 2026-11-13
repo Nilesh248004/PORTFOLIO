@@ -100,16 +100,16 @@ export default function ContactForm() {
   return (
     <form id="contact-form" className="form" onSubmit={onSubmit}>
       <div className="field">
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">Your name</label>
         <input id="name" name="name" type="text" autoComplete="name" required minLength={2} maxLength={80} />
       </div>
       <div className="field">
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">Your email</label>
         <input id="email" name="email" type="email" autoComplete="email" required maxLength={120} />
       </div>
       <div className="field">
-        <label htmlFor="message">How can I help?</label>
-        <textarea id="message" name="message" required minLength={10} maxLength={3000} />
+        <label htmlFor="message">Your message</label>
+        <textarea id="message" name="message" placeholder="Tell me about your product or team, and what you need help with." required minLength={10} maxLength={3000} />
       </div>
       {/* honeypot: real visitors never see or fill this */}
       <div className="hp" aria-hidden="true">
