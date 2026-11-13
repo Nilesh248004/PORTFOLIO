@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { profile } from '@/data/content';
@@ -38,8 +38,6 @@ function useTyping(words: string[]) {
 
 export default function Hero({ resumeHref, calendarUrl }: { resumeHref?: string; calendarUrl?: string }) {
   const typed = useTyping(profile.roles);
-  const stage = useRef<HTMLDivElement>(null);
-  const portrait = useRef<HTMLDivElement>(null);
   const [mode, setMode] = useState<'pending' | 'webgl' | 'css'>('pending');
 
   useEffect(() => {
@@ -48,21 +46,6 @@ export default function Hero({ resumeHref, calendarUrl }: { resumeHref?: string;
     setMode(small || reduced ? 'css' : 'webgl');
   }, []);
   const fail = useCallback(() => setMode('css'), []);
-
-  const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.pointerType !== 'mouse' || !stage.current) return;
-    const r = e.currentTarget.getBoundingClientRect();
-    const px = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
-    const py = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
-    stage.current.style.transform = `rotateY(${(-9 + (px - 0.5) * 22).toFixed(1)}deg) rotateX(${(4 - (py - 0.5) * 16).toFixed(1)}deg)`;
-    portrait.current?.style.setProperty('--gx', `${(px * 100).toFixed(0)}%`);
-    portrait.current?.style.setProperty('--gy', `${(py * 100).toFixed(0)}%`);
-  };
-  const onLeave = () => {
-    if (stage.current) stage.current.style.transform = 'rotateY(-9deg) rotateX(4deg)';
-    portrait.current?.style.setProperty('--gx', '50%');
-    portrait.current?.style.setProperty('--gy', '30%');
-  };
 
   return (
     <section id="top" className="hero">
@@ -95,16 +78,16 @@ export default function Hero({ resumeHref, calendarUrl }: { resumeHref?: string;
         </div>
       </div>
 
-      <div className="hero-visual" data-reveal onPointerMove={onMove} onPointerLeave={onLeave}>
+      <div className="hero-visual" data-reveal>
         <div className="floor" aria-hidden="true" />
-        <div ref={stage} className="stage" style={{ transform: 'rotateY(-9deg) rotateX(4deg)' }}>
+        <div className="stage">
           <div className="portrait-glow" aria-hidden="true" />
-          <div ref={portrait} className="portrait glass">
+          <div className="portrait glass">
             <Image src="/photo.png" alt={`Portrait of ${profile.name}`} width={783} height={1024} priority sizes="(max-width: 640px) 90vw, 440px" />
             <div className="portrait-tint" aria-hidden="true" />
             <div className="portrait-glare" aria-hidden="true" />
           </div>
-          <div className="float-card card-b" style={{ ['--z' as string]: '60px', right: -20, top: 40, transform: 'translateZ(60px)', animationDelay: '-3s' }}>
+          <div className="float-card card-b" style={{ right: -20, top: 40, transform: 'translateZ(60px)' }}>
             <span className="mono">QA @ {profile.company}</span>
           </div>
           {mode === 'webgl' && <HeroScene onFail={fail} />}

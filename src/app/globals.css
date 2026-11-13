@@ -503,7 +503,7 @@ html[data-skip-loader='1'] .loader {
   width: 100%;
   max-width: 440px;
   transform-style: preserve-3d;
-  transition: transform 0.2s ease-out;
+  transform: rotateY(-9deg) rotateX(4deg);
 }
 .floor {
   position: absolute;
@@ -564,20 +564,10 @@ html[data-skip-loader='1'] .loader {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-  animation: drift 7s ease-in-out infinite;
 }
 .float-card .mono {
   font-size: 15px;
   color: var(--accent);
-}
-@keyframes drift {
-  0%,
-  100% {
-    transform: translateZ(var(--z)) translateY(0);
-  }
-  50% {
-    transform: translateZ(var(--z)) translateY(-12px);
-  }
 }
 .scene {
   position: absolute;
@@ -668,8 +658,7 @@ html[data-skip-loader='1'] .loader {
   min-height: 340px;
   padding: 36px;
   border-radius: 28px;
-  transform: perspective(900px) rotateX(0) rotateY(0);
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s, box-shadow 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 .tile.wide {
   flex: 2 1 560px;
@@ -681,7 +670,6 @@ html[data-skip-loader='1'] .loader {
   background: linear-gradient(210deg, rgba(56, 189, 248, 0.2), var(--glass));
 }
 .tile:hover {
-  transform: perspective(900px) rotateX(5deg) rotateY(-5deg) translateZ(14px);
   border-color: rgba(120, 170, 255, 0.5);
   box-shadow: 0 40px 80px rgba(37, 99, 235, 0.28);
 }
@@ -1069,12 +1057,6 @@ html.anim [data-reveal].in,
 html.anim [data-stagger] > .in {
   opacity: 1;
   transform: none;
-}
-html.anim .tile.in {
-  transform: perspective(900px) rotateX(0) rotateY(0);
-}
-html.anim .tile.in:hover {
-  transform: perspective(900px) rotateX(5deg) rotateY(-5deg) translateZ(14px);
 }
 
 /* ---------- responsive ---------- */

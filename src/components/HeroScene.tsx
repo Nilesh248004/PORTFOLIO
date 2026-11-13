@@ -39,6 +39,9 @@ export default function HeroScene({ onFail }: { onFail: () => void }) {
     const group = new THREE.Group();
     scene.add(group);
 
+    // The scene is only redrawn when something changed (scroll, resize, label font loaded).
+    let dirty = true;
+
     const geo = new RoundedBoxGeometry(2.6, 0.18, 2.6, 4, 0.1);
     const edgeGeo = new THREE.EdgesGeometry(geo, 40);
     const disposables: { dispose: () => void }[] = [geo, edgeGeo];
@@ -76,8 +79,12 @@ export default function HeroScene({ onFail }: { onFail: () => void }) {
         g.textBaseline = 'middle';
         g.fillText(label.split('').join(' '), 12, 64);
         tex.needsUpdate = true;
+        dirty = true;
       };
       drawLabel();
+      // Redraw once the real mono font is available: it may still be downloading on the first draw.
+      // `fonts.ready` never rejects; `fonts.load` can (e.g. when the size-adjusted fallback face has no local font).
+      document.fonts?.ready.then(drawLabel);
       document.fonts?.load(`700 72px ${monoFamily}`).then(drawLabel).catch(() => {});
       const labelMat = new THREE.MeshBasicMaterial({ map: tex, transparent: true });
       const labelGeo = new THREE.PlaneGeometry(1.9, 0.475);
@@ -91,16 +98,14 @@ export default function HeroScene({ onFail }: { onFail: () => void }) {
       return mesh;
     });
 
-    const state = { mx: 0, my: 0, sy: window.scrollY };
-    const onMove = (e: PointerEvent) => {
-      state.mx = (e.clientX / window.innerWidth - 0.5) * 2;
-      state.my = (e.clientY / window.innerHeight - 0.5) * 2;
-    };
+    // The slabs never react to the mouse and never move on their own: only scrolling the page moves them.
+    const state = { sy: window.scrollY };
     const onScroll = () => {
       state.sy = window.scrollY;
     };
-    window.addEventListener('pointermove', onMove, { passive: true });
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    group.rotation.y = -0.75 + Math.min(state.sy, 900) * 0.0017;
 
     const resize = () => {
       const w = el.clientWidth || 360;
@@ -108,6 +113,7 @@ export default function HeroScene({ onFail }: { onFail: () => void }) {
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
+      dirty = true;
     };
     resize();
     const ro = new ResizeObserver(resize);
@@ -119,19 +125,21 @@ export default function HeroScene({ onFail }: { onFail: () => void }) {
     });
     io.observe(el);
 
-    const clock = new THREE.Clock();
     let raf = 0;
+    let lastSpread = -1;
     const tick = () => {
       raf = requestAnimationFrame(tick);
       if (!visible || document.hidden) return;
-      const t = clock.getElapsedTime();
-      const s = Math.min(state.sy, 900);
-      const targetY = -0.75 + state.mx * 0.35 + s * 0.0017;
-      group.rotation.y += (targetY - group.rotation.y) * 0.06;
-      group.rotation.x += (state.my * 0.1 - group.rotation.x) * 0.06;
-      const spread = 0.62 + (Math.min(state.sy, 700) / 700) * 0.55 + Math.sin(t * 0.9) * 0.04;
+      const targetY = -0.75 + Math.min(state.sy, 900) * 0.0017;
+      const dy = targetY - group.rotation.y;
+      const spread = 0.62 + (Math.min(state.sy, 700) / 700) * 0.55;
+      // Nothing changed since the last frame: skip drawing instead of re-rendering an identical image.
+      if (!dirty && Math.abs(dy) < 0.0005 && spread === lastSpread) return;
+      dirty = false;
+      lastSpread = spread;
+      group.rotation.y += dy * 0.06;
       slabs.forEach((m, i) => {
-        m.position.y = i * spread + (i > 0 ? Math.sin(t * 1.1 + i) * 0.05 : 0);
+        m.position.y = i * spread;
       });
       renderer.render(scene, camera);
     };
@@ -141,7 +149,6 @@ export default function HeroScene({ onFail }: { onFail: () => void }) {
       cancelAnimationFrame(raf);
       ro.disconnect();
       io.disconnect();
-      window.removeEventListener('pointermove', onMove);
       window.removeEventListener('scroll', onScroll);
       disposables.forEach((d) => d.dispose());
       renderer.dispose();
