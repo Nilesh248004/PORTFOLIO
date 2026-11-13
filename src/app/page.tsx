@@ -5,8 +5,7 @@ import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
 import ScrollEffects from '@/components/ScrollEffects';
 import ContactForm from '@/components/ContactForm';
-import Stats from '@/components/Stats';
-import { experience, profile, projects, skills, stats } from '@/data/content';
+import { experience, profile, projects, skills } from '@/data/content';
 
 const RESUME_FILE = 'Nilesh_K_Resume.pdf';
 
@@ -33,10 +32,6 @@ export default function Home() {
       <Nav />
       <main id="main" className="container">
         <Hero resumeHref={resumeHref} calendarUrl={calendarUrl} />
-
-        <section aria-label="Highlights" className="section">
-          <Stats items={stats} />
-        </section>
 
         <section id="work" className="section">
           <p className="eyebrow" data-reveal>Selected work</p>

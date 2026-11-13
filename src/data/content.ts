@@ -16,12 +16,6 @@ export const profile = {
 // A big number (or short word) with a label under it. Numbers count up when scrolled into view.
 export type Stat = { value: number | string; suffix?: string; label: string };
 
-export const stats: Stat[] = [
-  { value: 3, suffix: '', label: 'End-to-end projects across web, AI and DevOps' },
-  { value: 6, suffix: '-node', label: 'Redis cluster automated with zero-downtime upgrades' },
-  { value: 1000, suffix: '', label: 'Seeded test keys used to verify every cluster operation' },
-];
-
 export type Project = {
   slug: string;
   title: string;

@@ -18,7 +18,7 @@ Other scripts: `npm run build`, `npm start` (serve the production build), `npm r
 
 ## Edit your content
 
-Everything lives in **`src/data/content.ts`**: name, roles, pitch, stats, projects (and their detail pages), experience and skills.
+Everything lives in **`src/data/content.ts`**: name, roles, pitch, projects (and their detail pages), experience and skills.
 Search the file for `TODO` to find what still needs confirming:
 
 - `since` is your start date at Hippo Video (currently Aug 2026).
