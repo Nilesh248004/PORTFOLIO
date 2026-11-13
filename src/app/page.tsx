@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import type { CSSProperties } from 'react';
 import Link from 'next/link';
 import Nav from '@/components/Nav';
 import Hero from '@/components/Hero';
@@ -93,7 +94,7 @@ export default function Home() {
           <h2 className="h2" data-reveal>What I work with</h2>
           <div className="skills" data-stagger>
             {skills.map((s) => (
-              <div key={s.group} className={`skill glass${s.featured ? ' featured' : ''}`}>
+              <div key={s.group} className={`skill glass${s.featured ? ' featured' : ''}`} style={{ '--h': s.hue } as CSSProperties}>
                 <h3>{s.group}</h3>
                 <div className="tags">
                   {s.items.map((i) => (

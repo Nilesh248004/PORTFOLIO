@@ -182,13 +182,14 @@ export const experience = [
   },
 ];
 
-export const skills: { group: string; items: string[]; featured?: boolean }[] = [
-  { group: 'Testing', items: ['STLC', 'Test case writing', 'Bug life cycle', 'Manual testing', 'Functional testing'], featured: true },
-  { group: 'Languages', items: ['Java', 'Python', 'C', 'JavaScript'] },
-  { group: 'Web and frameworks', items: ['ReactJS', 'HTML', 'CSS', 'Node.js', 'Express.js', 'REST APIs'] },
-  { group: 'DevOps and CI/CD', items: ['Docker', 'Jenkins', 'Ansible', 'CI/CD pipelines', 'Bash', 'YAML', 'Linux'] },
-  { group: 'Databases', items: ['PostgreSQL', 'MySQL'] },
-  { group: 'AI and ML', items: ['Scikit-learn', 'Matplotlib', 'RAG', 'Agentic AI', 'MCP'] },
-  { group: 'Tools and platforms', items: ['Git', 'GitHub', 'Postman', 'Vercel', 'Render'] },
-  { group: 'CS fundamentals', items: ['Data structures', 'Algorithms', 'OOP'] },
+// `hue` (0-360) sets each card's colour on the home page: tint, border, title dot and chips.
+export const skills: { group: string; hue: number; items: string[]; featured?: boolean }[] = [
+  { group: 'Testing', hue: 215, items: ['STLC', 'Test case writing', 'Bug life cycle', 'Manual testing', 'Functional testing'], featured: true },
+  { group: 'Languages', hue: 265, items: ['Java', 'Python', 'C', 'JavaScript'] },
+  { group: 'Web and frameworks', hue: 175, items: ['ReactJS', 'HTML', 'CSS', 'Node.js', 'Express.js', 'REST APIs'] },
+  { group: 'DevOps and CI/CD', hue: 25, items: ['Docker', 'Jenkins', 'Ansible', 'CI/CD pipelines', 'Bash', 'YAML', 'Linux'] },
+  { group: 'Databases', hue: 140, items: ['PostgreSQL', 'MySQL'] },
+  { group: 'AI and ML', hue: 320, items: ['Scikit-learn', 'Matplotlib', 'RAG', 'Agentic AI', 'MCP'] },
+  { group: 'Tools and platforms', hue: 48, items: ['Git', 'GitHub', 'Postman', 'Vercel', 'Render'] },
+  { group: 'CS fundamentals', hue: 355, items: ['Data structures', 'Algorithms', 'OOP'] },
 ];
