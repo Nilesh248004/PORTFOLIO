@@ -1,0 +1,186 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import type { CSSProperties } from 'react';
+import Link from 'next/link';
+import Nav from '@/components/Nav';
+import Hero from '@/components/Hero';
+import ScrollEffects from '@/components/ScrollEffects';
+import ContactForm from '@/components/ContactForm';
+import { callTypes, experience, profile, projects, skills } from '@/data/content';
+import { bookingEnabled } from '@/lib/booking';
+import { hues } from '@/lib/palette';
+
+const RESUME_FILE = 'Nilesh_K_Resume.pdf';
+
+// Puts an element in one of the palette's colours: the `hue` class re-derives the accent colours from --h.
+const hueStyle = (h: number, extra?: CSSProperties) => ({ '--h': h, ...extra }) as CSSProperties;
+
+// The background glow: six soft colour pools down the page.
+const blobs = [
+  { top: -220, left: -160, size: 760, glow: 'a' },
+  { top: 240, right: -260, size: 820, glow: 'b' },
+  { top: 1150, left: -300, size: 760, glow: 'c' },
+  { top: 2150, right: -300, size: 800, glow: 'd' },
+  { top: 3050, left: -300, size: 760, glow: 'e' },
+  { top: 3900, right: -280, size: 720, glow: 'f' },
+];
+
+function Arrow() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  );
+}
+
+export default function Home() {
+  // The resume button only appears once you drop the PDF into /public.
+  const hasResume = fs.existsSync(path.join(process.cwd(), 'public', RESUME_FILE));
+  const resumeHref = hasResume ? `/${RESUME_FILE}` : undefined;
+
+  return (
+    <div className="page">
+      {blobs.map((b) => (
+        <div
+          key={b.glow}
+          className="blob"
+          aria-hidden="true"
+          style={{ top: b.top, left: b.left, right: b.right, width: b.size, height: b.size, background: `radial-gradient(circle,var(--glow-${b.glow}),transparent 68%)` }}
+        />
+      ))}
+
+      <Nav />
+      <main id="main" className="container">
+        <Hero resumeHref={resumeHref} />
+
+        <section id="work" className="section hue" style={hueStyle(hues.blue)}>
+          <p className="eyebrow" data-reveal>Selected work</p>
+          <h2 className="h2" data-reveal>Projects built from problem to deployment</h2>
+          <div className="tiles" data-stagger>
+            {projects.map((p) => (
+              <Link key={p.slug} href={`/projects/${p.slug}`} className={`tile glass hue${p.wide ? ' wide' : ''}`} style={hueStyle(p.hue)}>
+                <div className="tags">
+                  {p.tags.map((t) => (
+                    <span key={t} className="tag">{t}</span>
+                  ))}
+                </div>
+                <div>
+                  <h3>{p.title}</h3>
+                  {p.bullets ? (
+                    <ul className="bullets">
+                      {p.bullets.map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>{p.short}</p>
+                  )}
+                  {p.result && <div className="result">{p.result}</div>}
+                  <span className="more">
+                    View work <Arrow />
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section id="experience" className="section hue" style={hueStyle(hues.violet)}>
+          <p className="eyebrow" data-reveal>Experience and education</p>
+          <h2 className="h2" data-reveal>Where I have built quality</h2>
+          <div className="timeline" data-stagger>
+            {experience.map((e, i) => (
+              <div key={e.title} className="t-row hue" style={hueStyle(e.hue, { '--h2': experience[Math.min(i + 1, experience.length - 1)].hue } as CSSProperties)}>
+                <div className="t-rail" aria-hidden="true">
+                  <span className="t-dot" />
+                  {i < experience.length - 1 && <span className="t-line" />}
+                </div>
+                <div className="t-card glass">
+                  <div className="t-head">
+                    <h3>{e.title}</h3>
+                    <span className="t-when">{e.when}</span>
+                  </div>
+                  <p className="t-org">{e.org}</p>
+                  {e.note && <p className="t-org" style={{ fontSize: 15, marginTop: 4 }}>{e.note}</p>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="skills" className="section hue" style={hueStyle(hues.teal)}>
+          <p className="eyebrow" data-reveal>Toolkit</p>
+          <h2 className="h2" data-reveal>What I work with</h2>
+          <div className="skills" data-stagger>
+            {skills.map((s) => (
+              <div key={s.group} className={`skill glass hue${s.featured ? ' featured' : ''}`} style={hueStyle(s.hue)}>
+                <h3>{s.group}</h3>
+                <div className="tags">
+                  {s.items.map((i) => (
+                    <span key={i} className="tag">{i}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="contact" className="section hue" style={hueStyle(hues.pink, { paddingBottom: 96 })}>
+          <div className="contact glass" data-reveal>
+            <div className="contact-grid">
+              <div className="contact-copy">
+                <p className="eyebrow">Contact</p>
+                <h2>Let&apos;s make your product dependable</h2>
+                <p>Have a product that needs testing, or a team that needs an engineer who cares about quality? Send a message and I will get back to you.</p>
+                <div className="contact-links">
+                  <a className="btn btn-ghost btn-sm" href={`mailto:${profile.email}`}>
+                    {profile.email}
+                  </a>
+                  <a className="btn btn-ghost btn-sm" href={profile.linkedin} target="_blank" rel="noopener noreferrer">
+                    LinkedIn
+                  </a>
+                  <a className="btn btn-ghost btn-sm" href={profile.github} target="_blank" rel="noopener noreferrer">
+                    GitHub
+                  </a>
+                </div>
+              </div>
+              <ContactForm />
+            </div>
+          </div>
+
+          {bookingEnabled && (
+            <div className="call-card glass hue" style={hueStyle(hues.green)} data-reveal>
+              <div className="call-card-copy">
+                <p className="eyebrow">Prefer to talk?</p>
+                <h3>Book a call</h3>
+                <p>Pick a time that suits you and tell me what the call is about. The invite with the meeting link arrives by email.</p>
+              </div>
+              <div className="call-card-actions">
+                <Link className="btn btn-primary" href="/book">
+                  Book a call
+                </Link>
+                <ul className="call-chips" aria-label="Call types">
+                  {callTypes.map((t) => (
+                    <li key={t.slug}>
+                      <Link className="call-chip hue" style={hueStyle(t.hue)} href={`/book?type=${t.slug}`}>
+                        {t.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )}
+        </section>
+
+        <footer className="footer">
+          <span>
+            {profile.name} · {profile.title} · {profile.company}
+          </span>
+          <span>{new Date().getFullYear()}</span>
+        </footer>
+      </main>
+      <ScrollEffects />
+    </div>
+  );
+}
