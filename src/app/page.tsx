@@ -71,7 +71,7 @@ export default function Home() {
                   )}
                   {p.result && <div className="result">{p.result}</div>}
                   <span className="more">
-                    View project <Arrow />
+                    View work <Arrow />
                   </span>
                 </div>
               </Link>
