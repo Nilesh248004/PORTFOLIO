@@ -34,7 +34,7 @@ The site uses one palette of eight colours, defined in `src/lib/palette.ts`: blu
 
 - Every section, project, timeline entry, skill group and call type takes one of them. Change it with the `hue` fields in `src/data/content.ts`; the section colours are set in `src/app/page.tsx`.
 - Everything accent-coloured inside follows that colour: borders, card tints, chips, links, bullets and the nav highlight (which matches the section you are reading).
-- The brand gradient (blue, violet, pink) is used for the logo, the main buttons and the role line under your name. The progress bar and footer line run through the whole palette, and the BUILD / TEST / SHIP slabs are blue, red and pink.
+- The brand gradient (blue, violet, pink) is used for the logo, the main buttons and the role line under your name. The progress bar and footer line run through the whole palette, and the BUILD / TEST / SHIP slabs are blue, yellow and pink.
 - Colours are OKLCH, which keeps lightness even across hues, so text stays readable on every colour in both themes. All text was checked against WCAG AA contrast.
 
 ## Add your resume (download button)

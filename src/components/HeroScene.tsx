@@ -51,14 +51,14 @@ export default function HeroScene({ onFail }: { onFail: () => void }) {
     const monoFamily = monoVar || 'ui-monospace, monospace';
 
     const labels = ['BUILD', 'TEST', 'SHIP'];
-    // One colour per slab: blue to build, red to test, pink to ship.
-    const slabColors = [0x3b82f6, 0xef4444, 0xec4899];
-    const edgeColors = [0x93c5fd, 0xfca5a5, 0xf9a8d4];
+    // One colour per slab: blue to build, yellow to test, pink to ship.
+    const slabColors = [0x3b82f6, 0xfacc15, 0xec4899];
+    const edgeColors = [0x93c5fd, 0xfef08a, 0xf9a8d4];
     const slabs = labels.map((label, i) => {
       const mat = new THREE.MeshPhysicalMaterial({
         color: slabColors[i],
         transparent: true,
-        opacity: [0.38, 0.56, 0.62][i], // TEST a little more solid so its red reads clearly
+        opacity: [0.38, 0.56, 0.62][i], // TEST a little more solid so its yellow reads clearly
         roughness: 0.15,
         metalness: 0.2,
         clearcoat: 1,

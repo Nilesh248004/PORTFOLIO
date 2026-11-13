@@ -104,7 +104,7 @@ export default function Hero({ resumeHref }: { resumeHref?: string }) {
               <div className="slab" style={{ transform: 'translateZ(0)', '--sh': 255 } as CSSProperties}>
                 <span>BUILD</span>
               </div>
-              <div className="slab" style={{ transform: 'translateZ(28px)', '--sh': 25 } as CSSProperties}>
+              <div className="slab" style={{ transform: 'translateZ(28px)', '--sh': 100, '--sl': 0.82 } as CSSProperties}>
                 <span>TEST</span>
               </div>
               <div className="slab" style={{ transform: 'translateZ(56px)', '--sh': 350 } as CSSProperties}>
