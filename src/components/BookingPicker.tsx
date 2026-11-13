@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { callTypes, profile } from '@/data/content';
 
 type CalModule = typeof import('@calcom/embed-react');
@@ -133,7 +133,7 @@ export default function BookingPicker({ username }: { username: string }) {
         <legend>What is the call about?</legend>
         <div className="call-type-grid">
           {callTypes.map((t) => (
-            <label key={t.slug} className="call-type hue" style={{ '--h': t.hue } as CSSProperties}>
+            <label key={t.slug} className="call-type">
               <input type="radio" name="call-type" value={t.slug} checked={current === t.slug} onChange={() => choose(t.slug)} />
               <span className="call-type-title">{t.title}</span>
               <span className="call-type-blurb">{t.blurb}</span>

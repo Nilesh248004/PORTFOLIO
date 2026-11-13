@@ -21,13 +21,13 @@ export type Stat = { value: number | string; suffix?: string; label: string; str
 
 // The kinds of call visitors can book on the /book page. `slug` must match an event type you create in Cal.com
 // (its URL ends in /your-username/<slug>). Remove an entry to hide that call type.
-export type CallType = { slug: string; title: string; blurb: string; hue: number };
+export type CallType = { slug: string; title: string; blurb: string };
 
 export const callTypes: CallType[] = [
-  { slug: 'hiring-chat', title: 'Hiring or recruiter chat', blurb: 'Talk through a role and how I could fit your team.', hue: hues.pink },
-  { slug: 'qa-help', title: 'QA or testing help', blurb: 'Test strategy, API automation or quality for a product or team.', hue: hues.blue },
-  { slug: 'career-advice', title: 'Career advice or mentoring', blurb: 'Questions about getting started in QA and software.', hue: hues.violet },
-  { slug: 'intro-chat', title: 'General intro chat', blurb: 'Say hello or talk about anything else.', hue: hues.teal },
+  { slug: 'hiring-chat', title: 'Hiring or recruiter chat', blurb: 'Talk through a role and how I could fit your team.' },
+  { slug: 'qa-help', title: 'QA or testing help', blurb: 'Test strategy, API automation or quality for a product or team.' },
+  { slug: 'career-advice', title: 'Career advice or mentoring', blurb: 'Questions about getting started in QA and software.' },
+  { slug: 'intro-chat', title: 'General intro chat', blurb: 'Say hello or talk about anything else.' },
 ];
 
 export type Project = {
@@ -37,7 +37,6 @@ export type Project = {
   result?: string;
   tags: string[];
   wide?: boolean;
-  hue: number; // the project's colour, from src/lib/palette.ts
   bullets?: string[];
   problem: string;
   approach: string[];
@@ -54,7 +53,6 @@ export const projects: Project[] = [
     short: '',
     tags: ['QA', 'Karate', 'API testing'],
     wide: true,
-    hue: hues.blue,
     bullets: [
       'Piloted the onboarding of big-brand hotels.',
       'Automated proposal templates.',
@@ -86,7 +84,6 @@ export const projects: Project[] = [
       'One-command provisioning, scaling, rolling upgrades and rollback of a six-node cluster, with an availability monitor running throughout.',
     result: 'Zero data loss on scale-in',
     tags: ['Bash', 'Ansible', 'Docker'],
-    hue: hues.red,
     problem:
       'Operating a distributed Redis cluster by hand over SSH is slow and error-prone, especially during upgrades and scaling.',
     approach: [
@@ -113,7 +110,6 @@ export const projects: Project[] = [
       'Ask in plain English, get a query run on a live database and a readable answer streamed back, with graceful fallbacks for ambiguous questions.',
     result: 'Streams answers live',
     tags: ['MCP', 'SSE'],
-    hue: hues.violet,
     problem:
       'Non-technical users need answers from a database without writing SQL, and LLM responses can feel slow without feedback.',
     approach: [
@@ -141,7 +137,6 @@ export const projects: Project[] = [
     result: 'Intervention time: days to seconds',
     tags: ['ReactJS', 'Python', 'PostgreSQL', 'Machine learning'],
     wide: true,
-    hue: hues.green,
     problem:
       'Faculty found out about at-risk students too late because the process relied on manual spreadsheets.',
     approach: [
@@ -169,21 +164,18 @@ export const experience = [
     org: 'Hippo Video',
     when: 'Aug 2026 – Present',
     note: 'See the QA work above.',
-    hue: hues.green,
   },
   {
     title: 'B.E. Electronics and Communication Engineering',
     org: 'Bannari Amman Institute of Technology, Sathyamangalam',
     when: '2022 – 2026',
     note: 'CGPA 7.74',
-    hue: hues.blue,
   },
   {
     title: 'Higher Secondary Certificate (12th)',
     org: 'International Community School & Junior College, Kotagiri',
     when: '2021 – 2022',
     note: '66.7%',
-    hue: hues.amber,
   },
 ];
 
