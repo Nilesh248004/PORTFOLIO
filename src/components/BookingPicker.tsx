@@ -17,7 +17,7 @@ function currentTheme(): Theme {
 // initialises once per component instance.
 function CalEmbed({ cal, username, slug, theme }: { cal: CalModule; username: string; slug: string; theme: Theme }) {
   const Cal = cal.default;
-  const [status, setStatus] = useState<'loading' | 'ready' | 'slow'>('loading');
+  const [status, setStatus] = useState<'loading' | 'ready' | 'slow' | 'failed'>('loading');
   const wrap = useRef<HTMLDivElement>(null);
   const config = useMemo(() => ({ layout: 'month_view' as const, theme }), [theme]);
 
@@ -25,12 +25,12 @@ function CalEmbed({ cal, username, slug, theme }: { cal: CalModule; username: st
   useEffect(() => {
     let alive = true;
     let off: (() => void) | undefined;
-    const timer = setTimeout(() => alive && setStatus((s) => (s === 'ready' ? s : 'slow')), SLOW_AFTER_MS);
+    const timer = setTimeout(() => alive && setStatus((s) => (s === 'loading' ? 'slow' : s)), SLOW_AFTER_MS);
     cal.getCalApi({ namespace: slug }).then((api) => {
       if (!alive) return;
       const fn = api as unknown as CalFn;
       const onReady = () => alive && setStatus('ready');
-      const onFailed = () => alive && setStatus('slow');
+      const onFailed = () => alive && setStatus('failed');
       fn('on', { action: 'linkReady', callback: onReady });
       fn('on', { action: 'linkFailed', callback: onFailed });
       off = () => {
@@ -70,12 +70,17 @@ function CalEmbed({ cal, username, slug, theme }: { cal: CalModule; username: st
     <>
       {status !== 'ready' && (
         <p className="book-status" role="status">
-          {status === 'loading' ? (
-            'Loading the calendar...'
-          ) : (
+          {status === 'loading' && 'Loading the calendar...'}
+          {status === 'slow' && (
             <>
               The calendar is taking a while to load. You can also email{' '}
               <a href={`mailto:${profile.email}`}>{profile.email}</a> and I will suggest a time.
+            </>
+          )}
+          {status === 'failed' && (
+            <>
+              This calendar is not available right now. Please email <a href={`mailto:${profile.email}`}>{profile.email}</a> and I will
+              suggest a time.
             </>
           )}
         </p>
