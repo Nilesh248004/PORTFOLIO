@@ -34,15 +34,17 @@ Use a version that includes your Hippo Video role, and decide whether you want y
 
 ## Contact form
 
-The form posts to `/api/contact`, which sends email through [Resend](https://resend.com) (free tier is enough).
+The form sends email with [EmailJS](https://www.emailjs.com) straight from the visitor's browser, so it needs no server and no environment variables.
+It uses the EmailJS service, template and public key from your previous site (see `src/lib/emailjs.ts`). These three values are public by design, not secrets.
+To use a different EmailJS account, set `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` and `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` (locally in `.env.local`, and in your host's settings).
 
-1. Create a Resend API key.
-2. Set `RESEND_API_KEY`, `CONTACT_TO_EMAIL` (where messages arrive) and `CONTACT_FROM_EMAIL` in your host's environment variables.
-   Until you verify your own domain in Resend, keep `onboarding@resend.dev` as the sender.
+**Template variables.** Each message sends these values, so use any of them in your EmailJS template (Subject, Content, Reply-To):
+`{{name}}`, `{{from_name}}`, `{{email}}`, `{{from_email}}`, `{{reply_to}}`, `{{subject}}`, `{{title}}`, `{{message}}`.
+The recipient address is set in the EmailJS dashboard, in the template's "To Email" field.
 
-Spam protection is built in: a hidden honeypot field, a minimum fill time, input validation, a request size cap and a per-IP rate limit.
-Without the environment variables the form tells visitors it is not set up and offers their message as a ready-to-send email instead.
-If Resend rejects a request, the reason is written to your host's server logs.
+**Spam and abuse.** The form has a hidden honeypot field, a minimum fill time and a 30-second gap between sends. Because EmailJS keys are public, a determined bot could still call EmailJS directly, so also turn on the protections in your EmailJS dashboard (Account → Security: for example reCAPTCHA and restricting which sites can use your key).
+
+**If sending fails**, visitors see a clear message and a button to send the same text from their own email app. The failure reason (status and text from EmailJS) is also printed in the browser console, which is the quickest way to debug a template or key problem.
 
 ## Calendar button
 
@@ -51,10 +53,10 @@ Set `NEXT_PUBLIC_CALENDAR_URL` (Calendly, Cal.com, Google appointment page). The
 ## Deploy to Vercel
 
 1. Import this repository at https://vercel.com/new. `vercel.json` already sets the framework to Next.js, so this also works if the project was previously a static site.
-2. Add the environment variables from `.env.example`.
-3. Deploy. Every push redeploys automatically.
+2. Deploy. No environment variables are required. Add the optional ones from `.env.example` if you want them.
+3. Every push redeploys automatically.
 
-This app has a server route, so it needs a Node host such as Vercel or Netlify. It cannot be served from GitHub Pages.
+This is a Next.js app, so deploy it on Vercel or Netlify. It cannot be served as-is from GitHub Pages.
 
 ## Custom domain
 
@@ -87,9 +89,9 @@ After deploying, test your link at https://www.linkedin.com/post-inspector/ and 
 ## Project layout
 
 ```
-src/app          pages, API route, SEO files, 404
+src/app          pages, SEO files, 404
 src/components   Nav, Hero, HeroScene (Three.js), ScrollEffects (GSAP), ContactForm, Cursor, Loader
 src/data         content.ts  <- edit this
-src/lib          site.ts (public site URL)
+src/lib          site.ts (public site URL), emailjs.ts (contact form config)
 public           photo.png (+ add Nilesh_K_Resume.pdf)
 ```
