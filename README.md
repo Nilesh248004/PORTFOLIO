@@ -39,9 +39,16 @@ The form sends email with [EmailJS](https://www.emailjs.com) straight from the v
 It uses the EmailJS service, template and public key from your previous site (see `src/lib/emailjs.ts`). These three values are public by design, not secrets.
 To use a different EmailJS account, set `NEXT_PUBLIC_EMAILJS_SERVICE_ID`, `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` and `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` (locally in `.env.local`, and in your host's settings).
 
-**Template variables.** Each message sends these values, so use any of them in your EmailJS template (Subject, Content, Reply-To):
-`{{name}}`, `{{from_name}}`, `{{email}}`, `{{from_email}}`, `{{reply_to}}`, `{{subject}}`, `{{title}}`, `{{message}}`.
-The recipient address is set in the EmailJS dashboard, in the template's "To Email" field.
+**Template.** Paste `docs/emailjs-template.html` into your EmailJS template (Content, in the code editor). It shows who wrote, their email as a link, when it arrived, the message with its line breaks, and a Reply button. Then set these in the template's Settings tab:
+
+| Setting | Value |
+|---|---|
+| Subject | `{{subject}}` |
+| To Email | your own address |
+| From Name | `{{from_name}}` |
+| Reply To | `{{reply_to}}` |
+
+**Variables sent with every message** (use any of them in the template): `{{name}}`, `{{from_name}}`, `{{email}}`, `{{from_email}}`, `{{reply_to}}`, `{{subject}}`, `{{title}}`, `{{message}}`, `{{time}}` (UTC). Always use double braces: EmailJS escapes HTML in `{{ }}` but not in `{{{ }}}`, and the message comes from a stranger.
 
 **Spam and abuse.** The form has a hidden honeypot field, a minimum fill time and a 30-second gap between sends. Because EmailJS keys are public, a determined bot could still call EmailJS directly, so also turn on the protections in your EmailJS dashboard (Account → Security: for example reCAPTCHA and restricting which sites can use your key).
 

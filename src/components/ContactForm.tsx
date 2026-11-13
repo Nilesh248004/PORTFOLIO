@@ -78,6 +78,8 @@ export default function ContactForm() {
           subject,
           title: subject,
           message,
+          // When it was sent, in UTC so it is unambiguous wherever it is read (e.g. "Fri, 13 Nov 2026 06:52:10 UTC").
+          time: new Date().toUTCString().replace('GMT', 'UTC'),
         },
         { publicKey: emailjsConfig.publicKey },
       );
