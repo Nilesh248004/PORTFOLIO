@@ -566,17 +566,6 @@ html[data-skip-loader='1'] .loader {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
   animation: drift 7s ease-in-out infinite;
 }
-.float-card b {
-  display: block;
-  font-family: var(--font-display), system-ui, sans-serif;
-  font-size: 28px;
-}
-.float-card small {
-  display: block;
-  margin-top: 2px;
-  font-size: 13px;
-  color: var(--muted);
-}
 .float-card .mono {
   font-size: 15px;
   color: var(--accent);
@@ -1129,16 +1118,9 @@ html.anim .tile.in:hover {
   .container {
     padding: 0 16px;
   }
-  .float-card.card-a {
-    left: 8px !important;
-    bottom: 24px !important;
-  }
   .float-card.card-b {
     right: 8px !important;
     top: -12px !important;
-  }
-  .float-card b {
-    font-size: 24px;
   }
   .stage {
     max-width: min(100%, 320px);

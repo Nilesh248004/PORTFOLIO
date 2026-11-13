@@ -104,10 +104,6 @@ export default function Hero({ resumeHref, calendarUrl }: { resumeHref?: string;
             <div className="portrait-tint" aria-hidden="true" />
             <div className="portrait-glare" aria-hidden="true" />
           </div>
-          <div className="float-card card-a" style={{ ['--z' as string]: '90px', left: -28, bottom: 48, transform: 'translateZ(90px)' }}>
-            <b>3</b>
-            <small>End-to-end projects</small>
-          </div>
           <div className="float-card card-b" style={{ ['--z' as string]: '60px', right: -20, top: 40, transform: 'translateZ(60px)', animationDelay: '-3s' }}>
             <span className="mono">QA @ {profile.company}</span>
           </div>
