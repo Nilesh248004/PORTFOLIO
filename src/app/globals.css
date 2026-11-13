@@ -619,50 +619,6 @@ html[data-skip-loader='1'] .loader {
   font-size: 15px;
   color: var(--accent);
 }
-.scene {
-  position: absolute;
-  right: -130px;
-  bottom: -100px;
-  width: 460px;
-  height: 460px;
-  pointer-events: none;
-  z-index: 3;
-}
-.scene canvas {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-/* CSS fallback slabs (mobile / no WebGL) */
-.slabs-css {
-  position: absolute;
-  right: -26px;
-  bottom: -6px;
-  width: 120px;
-  height: 120px;
-  transform-style: preserve-3d;
-  transform: translateZ(20px) rotateX(58deg) rotateZ(-38deg);
-  pointer-events: none;
-}
-.slab {
-  position: absolute;
-  inset: 0;
-  border-radius: 18px;
-  border: 1px solid oklch(0.82 0.12 var(--sh, 255) / 0.6);
-  /* --sh = slab hue, --sl = slab lightness (yellow needs a light value to look yellow rather than olive) */
-  background: linear-gradient(145deg, oklch(var(--sl, 0.55) 0.2 var(--sh, 255) / 0.42), oklch(0.6 0.15 var(--sh, 255) / 0.08));
-  box-shadow: 0 0 24px oklch(var(--sl, 0.55) 0.2 var(--sh, 255) / 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-}
-.slab span {
-  position: absolute;
-  left: 12px;
-  bottom: 10px;
-  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: #dce8ff;
-}
-
 /* ---------- stats ---------- */
 .stats {
   display: grid;

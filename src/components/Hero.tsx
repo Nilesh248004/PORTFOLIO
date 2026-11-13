@@ -1,13 +1,10 @@
 'use client';
 
-import { useCallback, useEffect, useState, type CSSProperties } from 'react';
-import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { profile } from '@/data/content';
 import { bookingEnabled } from '@/lib/booking';
-
-const HeroScene = dynamic(() => import('./HeroScene'), { ssr: false });
 
 function useTyping(words: string[]) {
   const [text, setText] = useState(words[0]);
@@ -40,14 +37,6 @@ function useTyping(words: string[]) {
 
 export default function Hero({ resumeHref }: { resumeHref?: string }) {
   const typed = useTyping(profile.roles);
-  const [mode, setMode] = useState<'pending' | 'webgl' | 'css'>('pending');
-
-  useEffect(() => {
-    const small = window.matchMedia('(max-width: 760px)').matches;
-    const reduced = document.documentElement.classList.contains('rm');
-    setMode(small || reduced ? 'css' : 'webgl');
-  }, []);
-  const fail = useCallback(() => setMode('css'), []);
 
   return (
     <section id="top" className="hero">
@@ -98,20 +87,6 @@ export default function Hero({ resumeHref }: { resumeHref?: string }) {
           <div className="float-card card-b" style={{ right: -20, top: 40, transform: 'translateZ(60px)' }}>
             <span className="mono">QA @ {profile.company}</span>
           </div>
-          {mode === 'webgl' && <HeroScene onFail={fail} />}
-          {mode === 'css' && (
-            <div className="slabs-css" aria-hidden="true">
-              <div className="slab" style={{ transform: 'translateZ(0)', '--sh': 255 } as CSSProperties}>
-                <span>BUILD</span>
-              </div>
-              <div className="slab" style={{ transform: 'translateZ(28px)', '--sh': 100, '--sl': 0.82 } as CSSProperties}>
-                <span>TEST</span>
-              </div>
-              <div className="slab" style={{ transform: 'translateZ(56px)', '--sh': 350 } as CSSProperties}>
-                <span>SHIP</span>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </section>

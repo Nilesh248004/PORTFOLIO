@@ -1,6 +1,6 @@
 # Nilesh K · Portfolio
 
-Next.js 16 (App Router) · React 19 · TypeScript · GSAP · Three.js. Deploys to Vercel with no configuration.
+Next.js 16 (App Router) · React 19 · TypeScript · GSAP. Deploys to Vercel with no configuration.
 
 The previous plain HTML/CSS/JS version of this site is preserved in git history (commit `4d6663f`).
 
@@ -34,7 +34,7 @@ The site uses one palette of eight colours, defined in `src/lib/palette.ts`: blu
 
 - Every section, project, timeline entry, skill group and call type takes one of them. Change it with the `hue` fields in `src/data/content.ts`; the section colours are set in `src/app/page.tsx`.
 - Everything accent-coloured inside follows that colour: borders, card tints, chips, links, bullets and the nav highlight (which matches the section you are reading).
-- The brand gradient (blue, violet, pink) is used for the logo, the main buttons and the role line under your name. The progress bar and footer line run through the whole palette, and the BUILD / TEST / SHIP slabs are blue, yellow and pink.
+- The brand gradient (blue, violet, pink) is used for the logo, the main buttons and the role line under your name. The progress bar and footer line run through the whole palette.
 - Colours are OKLCH, which keeps lightness even across hues, so text stays readable on every colour in both themes. All text was checked against WCAG AA contrast.
 
 ## Add your resume (download button)
@@ -123,7 +123,7 @@ After deploying, test your link at https://www.linkedin.com/post-inspector/ and 
 ## What's in the box
 
 - Loading intro (once per session, skipped for repeat visitors and reduced-motion users)
-- Three.js glass slabs (BUILD / TEST / SHIP) in the hero that follow the mouse, spread on scroll and bob gently. They are the only animated card-like element: the portrait and project cards stay still on hover (CSS fallback on phones and without WebGL)
+- A still hero portrait with a spectrum ring and colour glow; the portrait and project cards do not move on hover
 - GSAP scroll reveals, staggered cards and animated counters
 - Dark/light toggle (remembered), sticky nav with active-section highlight, scroll progress bar
 - Typing role effect, project detail pages, styled 404 page, working contact form, call booking page
@@ -136,7 +136,7 @@ After deploying, test your link at https://www.linkedin.com/post-inspector/ and 
 
 ```
 src/app          pages, SEO files, 404
-src/components   Nav, Hero, HeroScene (Three.js), ScrollEffects (GSAP), Stats, ContactForm, BookingPicker, Loader
+src/components   Nav, Hero, ScrollEffects (GSAP), Stats, ContactForm, BookingPicker, Loader
 src/data         content.ts  <- edit this
 src/lib          site.ts (public site URL), emailjs.ts (contact form config), booking.ts (booking on/off), palette.ts (colours)
 public           photo.png (+ add Nilesh_K_Resume.pdf)
