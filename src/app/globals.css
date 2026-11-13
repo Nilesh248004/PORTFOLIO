@@ -1,7 +1,6 @@
-/* ---------- colour system: "Spectrum" ----------
-   Eight OKLCH hues live in src/lib/palette.ts. Give an element the class `hue` and a `--h` (hue angle) and everything
-   accent-coloured inside it follows. OKLCH keeps lightness equal across hues, so text stays readable whichever hue is
-   used. The brand gradient (blue, violet, pink) is fixed and ties the page together. */
+/* ---------- colours ----------
+   The site is blue: the accent colours below are derived from --h (a blue OKLCH hue). The skill cards are the one
+   exception: each has the class `hue` and its own --h (from src/lib/palette.ts), which re-derives the accent for it. */
 :root,
 :root[data-theme='dark'] {
   --h: 255;
@@ -19,16 +18,14 @@
   --tag-bg: rgba(255, 255, 255, 0.08);
   --tag-text: #c7d6f5;
   --shadow: 0 20px 60px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  --brand: linear-gradient(110deg, oklch(0.53 0.21 258), oklch(0.5 0.23 298) 55%, oklch(0.54 0.22 350));
-  --brand-text: linear-gradient(100deg, oklch(0.8 0.13 250), oklch(0.8 0.14 300) 52%, oklch(0.82 0.14 350));
-  --spectrum: linear-gradient(90deg, oklch(0.64 0.2 258), oklch(0.6 0.22 298) 22%, oklch(0.66 0.21 350) 44%, oklch(0.72 0.17 55) 62%, oklch(0.82 0.16 90) 80%, oklch(0.74 0.18 150));
-  --glow-a: oklch(0.55 0.21 258 / 0.42);
-  --glow-b: oklch(0.52 0.23 298 / 0.32);
-  --glow-c: oklch(0.6 0.15 195 / 0.2);
-  --glow-d: oklch(0.58 0.23 350 / 0.24);
-  --glow-e: oklch(0.68 0.16 55 / 0.17);
-  --glow-f: oklch(0.6 0.18 150 / 0.17);
-  --grid-line: oklch(0.72 0.13 285 / 0.36);
+  --brand: linear-gradient(135deg, oklch(0.5 0.21 264), oklch(0.53 0.16 245));
+  --glow-a: oklch(0.55 0.21 262 / 0.42);
+  --glow-b: oklch(0.7 0.14 230 / 0.22);
+  --glow-c: oklch(0.5 0.2 275 / 0.26);
+  --glow-d: oklch(0.55 0.21 262 / 0.3);
+  --glow-e: oklch(0.7 0.14 230 / 0.18);
+  --glow-f: oklch(0.5 0.2 275 / 0.22);
+  --grid-line: oklch(0.72 0.13 255 / 0.36);
   --nav-bg: rgba(8, 14, 32, 0.92);
   color-scheme: dark;
 }
@@ -48,20 +45,19 @@
   --tag-bg: rgba(37, 99, 235, 0.08);
   --tag-text: #1e3a8a;
   --shadow: 0 20px 50px rgba(30, 58, 138, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  --brand-text: linear-gradient(100deg, oklch(0.46 0.2 258), oklch(0.46 0.21 298) 52%, oklch(0.5 0.2 350));
-  --glow-a: oklch(0.6 0.2 258 / 0.2);
-  --glow-b: oklch(0.6 0.21 298 / 0.16);
-  --glow-c: oklch(0.7 0.14 195 / 0.16);
-  --glow-d: oklch(0.65 0.21 350 / 0.14);
-  --glow-e: oklch(0.75 0.14 55 / 0.16);
-  --glow-f: oklch(0.7 0.16 150 / 0.14);
-  --grid-line: oklch(0.55 0.15 285 / 0.28);
+  --glow-a: oklch(0.6 0.2 262 / 0.2);
+  --glow-b: oklch(0.75 0.13 230 / 0.2);
+  --glow-c: oklch(0.6 0.18 275 / 0.13);
+  --glow-d: oklch(0.6 0.2 262 / 0.16);
+  --glow-e: oklch(0.75 0.13 230 / 0.16);
+  --glow-f: oklch(0.6 0.18 275 / 0.12);
+  --grid-line: oklch(0.55 0.15 255 / 0.28);
   --nav-bg: rgba(244, 247, 255, 0.94);
   color-scheme: light;
 }
 
-/* Colours derived from --h. They are declared again on every `.hue` element so a section, card or project with its
-   own --h gets its own colour (custom properties that use var() are resolved where they are declared). */
+/* Colours derived from --h. They are declared again on every `.hue` element (the skill cards) so each card gets its
+   own colour (custom properties that use var() are resolved where they are declared). */
 :root,
 :root[data-theme='dark'],
 .hue {
@@ -211,12 +207,12 @@ img {
   transform: translateY(-2px);
 }
 .btn-primary {
-  background: var(--brand);
+  background: var(--accent-strong);
   color: var(--on-accent);
-  box-shadow: 0 10px 30px oklch(0.5 0.22 290 / 0.4);
+  box-shadow: 0 10px 30px oklch(0.5 0.2 262 / 0.4);
 }
 .btn-primary:hover {
-  box-shadow: 0 12px 40px oklch(0.5 0.22 290 / 0.55);
+  box-shadow: 0 12px 40px oklch(0.5 0.2 262 / 0.55);
 }
 .btn-ghost {
   background: var(--glass);
@@ -267,7 +263,7 @@ html[data-skip-loader='1'] .loader {
   font-family: var(--font-display), system-ui, sans-serif;
   font-weight: 700;
   font-size: 32px;
-  box-shadow: 0 0 60px oklch(0.5 0.22 290 / 0.6);
+  box-shadow: 0 0 60px oklch(0.5 0.2 262 / 0.6);
   animation: loaderPop 1.1s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 .loader-bar {
@@ -324,7 +320,7 @@ html[data-skip-loader='1'] .loader {
   width: 100%;
   transform-origin: 0 50%;
   transform: scaleX(0);
-  background: var(--spectrum);
+  background: var(--brand);
 }
 .header {
   position: fixed;
@@ -372,7 +368,7 @@ html[data-skip-loader='1'] .loader {
 }
 .logo:hover .logo-mark {
   transform: rotate(-8deg) scale(1.08);
-  box-shadow: 0 0 28px oklch(0.6 0.22 300 / 0.55);
+  box-shadow: 0 0 28px oklch(0.7 0.14 230 / 0.55);
 }
 .nav-right {
   display: flex;
@@ -474,8 +470,8 @@ html[data-skip-loader='1'] .loader {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--brand);
-  box-shadow: 0 0 12px oklch(0.6 0.22 300 / 0.7);
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent);
 }
 .hero h1 {
   margin: 28px 0 0;
@@ -492,12 +488,7 @@ html[data-skip-loader='1'] .loader {
   font-weight: 500;
   font-size: clamp(22px, 3vw, 32px);
   line-height: 1.25;
-  width: fit-content;
-  max-width: 100%;
-  color: transparent;
-  background: var(--brand-text);
-  -webkit-background-clip: text;
-  background-clip: text;
+  color: var(--accent);
 }
 .caret {
   display: inline-block;
@@ -505,7 +496,7 @@ html[data-skip-loader='1'] .loader {
   height: 0.9em;
   margin-left: 4px;
   vertical-align: -0.08em;
-  background: oklch(0.78 0.14 300);
+  background: var(--accent);
   animation: blink 1s steps(1) infinite;
 }
 @keyframes blink {
@@ -540,8 +531,6 @@ html[data-skip-loader='1'] .loader {
   position: relative;
   width: 100%;
   max-width: 440px;
-  transform-style: preserve-3d;
-  transform: rotateY(-9deg) rotateX(4deg);
 }
 .floor {
   position: absolute;
@@ -560,21 +549,16 @@ html[data-skip-loader='1'] .loader {
 .portrait-glow {
   position: absolute;
   inset: 0;
-  transform: translateZ(-70px);
   border-radius: 36px;
-  background: linear-gradient(140deg, oklch(0.55 0.21 258 / 0.55), oklch(0.52 0.23 298 / 0.45) 50%, oklch(0.58 0.23 350 / 0.5));
-  box-shadow: -40px 20px 90px 10px oklch(0.55 0.21 258 / 0.34), 40px 30px 90px 10px oklch(0.58 0.23 350 / 0.3), 0 60px 140px 30px oklch(0.6 0.17 55 / 0.14);
+  background: linear-gradient(140deg, oklch(0.55 0.21 262 / 0.5), oklch(0.7 0.14 230 / 0.15) 60%, oklch(0.5 0.2 275 / 0.4));
+  box-shadow: 0 0 80px 30px oklch(0.55 0.21 262 / 0.38), 0 0 160px 60px oklch(0.7 0.14 230 / 0.12);
 }
 .portrait {
   position: relative;
   aspect-ratio: 4 / 5;
   border-radius: 36px;
   overflow: hidden;
-  /* a static ring that runs through the whole palette */
-  border: 3px solid transparent;
-  background:
-    linear-gradient(var(--bg-2), var(--bg-2)) padding-box,
-    conic-gradient(from 200deg, oklch(0.68 0.2 258), oklch(0.65 0.22 298), oklch(0.7 0.21 350), oklch(0.74 0.17 55), oklch(0.84 0.16 90), oklch(0.76 0.18 150), oklch(0.74 0.14 195), oklch(0.68 0.2 258)) border-box;
+  border-color: var(--border-strong);
 }
 .portrait img {
   display: block;
@@ -587,16 +571,8 @@ html[data-skip-loader='1'] .loader {
   position: absolute;
   inset: 0;
   mix-blend-mode: multiply;
-  background: linear-gradient(180deg, rgba(6, 11, 26, 0) 62%, rgba(6, 11, 26, 0.55) 100%);
+  background: linear-gradient(180deg, oklch(0.72 0.13 255 / 0.35) 0%, oklch(0.72 0.13 255 / 0) 30%, rgba(6, 11, 26, 0) 62%, rgba(6, 11, 26, 0.55) 100%);
   pointer-events: none;
-}
-.portrait-tint::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(100deg, oklch(0.8 0.1 250 / 0.55), oklch(0.8 0.1 300 / 0.45) 50%, oklch(0.82 0.1 350 / 0.5));
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 34%);
-  mask-image: linear-gradient(180deg, #000 0%, transparent 34%);
 }
 .portrait-glare {
   position: absolute;
@@ -632,12 +608,6 @@ html[data-skip-loader='1'] .loader {
 .proj-stats .stat {
   border-color: var(--accent-line);
   background: linear-gradient(150deg, var(--accent-wash), var(--glass) 70%);
-}
-.proj-stats .stat:nth-child(2) {
-  --h: calc(var(--ph) + 35);
-}
-.proj-stats .stat:nth-child(3) {
-  --h: calc(var(--ph) + 70);
 }
 .stat b {
   display: block;
@@ -877,19 +847,8 @@ html[data-skip-loader='1'] .loader {
   overflow: hidden;
   padding: 64px 48px;
   border-radius: 36px;
-  background:
-    radial-gradient(120% 140% at 0% 0%, oklch(0.55 0.21 258 / 0.36), transparent 56%),
-    radial-gradient(110% 130% at 100% 100%, oklch(0.56 0.23 350 / 0.28), transparent 56%),
-    radial-gradient(90% 100% at 100% 0%, oklch(0.55 0.2 298 / 0.24), transparent 60%),
-    var(--glass);
+  background: linear-gradient(140deg, oklch(0.55 0.21 262 / 0.38), var(--glass) 55%, oklch(0.7 0.14 230 / 0.16));
   border-color: var(--accent-line);
-}
-:root[data-theme='light'] .contact {
-  background:
-    radial-gradient(120% 140% at 0% 0%, oklch(0.75 0.14 258 / 0.4), transparent 56%),
-    radial-gradient(110% 130% at 100% 100%, oklch(0.78 0.14 350 / 0.32), transparent 56%),
-    radial-gradient(90% 100% at 100% 0%, oklch(0.78 0.12 298 / 0.28), transparent 60%),
-    var(--glass);
 }
 .contact-grid {
   display: flex;
@@ -1062,19 +1021,10 @@ html[data-skip-loader='1'] .loader {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 12px;
-  position: relative;
   padding: 28px 0 56px;
+  border-top: 1px solid var(--border);
   font-size: 14px;
   color: var(--muted-2);
-}
-.footer::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--spectrum);
-  opacity: 0.6;
 }
 
 /* ---------- project page ---------- */

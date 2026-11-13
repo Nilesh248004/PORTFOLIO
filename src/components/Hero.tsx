@@ -75,7 +75,7 @@ export default function Hero({ resumeHref }: { resumeHref?: string }) {
         </div>
       </div>
 
-      <div className="hero-visual" data-reveal>
+      <div className="hero-visual">
         <div className="floor" aria-hidden="true" />
         <div className="stage">
           <div className="portrait-glow" aria-hidden="true" />
@@ -84,7 +84,7 @@ export default function Hero({ resumeHref }: { resumeHref?: string }) {
             <div className="portrait-tint" aria-hidden="true" />
             <div className="portrait-glare" aria-hidden="true" />
           </div>
-          <div className="float-card card-b" style={{ right: -20, top: 40, transform: 'translateZ(60px)' }}>
+          <div className="float-card card-b" style={{ right: -20, top: 40 }}>
             <span className="mono">QA @ {profile.company}</span>
           </div>
         </div>

@@ -16,13 +16,13 @@ export default function OpengraphImage() {
           flexDirection: 'column',
           justifyContent: 'center',
           padding: 90,
-          background: 'linear-gradient(135deg,#060b1a 0%,#0b1736 45%,#2a1259 80%,#5b1a4a 100%)',
+          background: 'linear-gradient(135deg,#060b1a 0%,#0b1736 60%,#12306b 100%)',
           color: '#eaf0ff',
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 96, height: 96, borderRadius: 28, background: 'linear-gradient(135deg,#2563eb,#7c3aed 55%,#db2777)', fontSize: 40, fontWeight: 700, color: '#fff' }}>NK</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 96, height: 96, borderRadius: 28, background: 'linear-gradient(135deg,#2563eb,#38bdf8)', fontSize: 40, fontWeight: 700, color: '#fff' }}>NK</div>
         <div style={{ marginTop: 44, fontSize: 96, fontWeight: 700, letterSpacing: -3 }}>{profile.name}</div>
-        <div style={{ marginTop: 12, fontSize: 40, color: '#c4b5fd' }}>{profile.title}</div>
+        <div style={{ marginTop: 12, fontSize: 40, color: '#60a5fa' }}>{profile.title}</div>
         <div style={{ marginTop: 28, fontSize: 30, color: '#a7b6d6' }}>{`${profile.company} · API automation · Full-stack · DevOps`}</div>
       </div>
     ),

@@ -30,12 +30,9 @@ Search the file for `TODO` to find what still needs confirming:
 
 ## Colours
 
-The site uses one palette of eight colours, defined in `src/lib/palette.ts`: blue, violet, pink, red, orange, amber, green and teal.
+The site uses one blue theme. The accent colours are defined at the top of `src/app/globals.css`.
 
-- Every section, project, timeline entry, skill group and call type takes one of them. Change it with the `hue` fields in `src/data/content.ts`; the section colours are set in `src/app/page.tsx`.
-- Everything accent-coloured inside follows that colour: borders, card tints, chips, links, bullets and the nav highlight (which matches the section you are reading).
-- The brand gradient (blue, violet, pink) is used for the logo, the main buttons and the role line under your name. The progress bar and footer line run through the whole palette.
-- Colours are OKLCH, which keeps lightness even across hues, so text stays readable on every colour in both themes. All text was checked against WCAG AA contrast.
+The skill cards are the one exception: each has its own colour, set by its `hue` field in `src/data/content.ts` using the names in `src/lib/palette.ts` (blue, violet, pink, red, orange, amber, green, teal). Keep neighbouring cards at least ~30 apart on the colour wheel so they stay distinct. Colours are OKLCH, which keeps text readable on every hue in both themes.
 
 ## Add your resume (download button)
 
@@ -123,11 +120,11 @@ After deploying, test your link at https://www.linkedin.com/post-inspector/ and 
 ## What's in the box
 
 - Loading intro (once per session, skipped for repeat visitors and reduced-motion users)
-- A still hero portrait with a spectrum ring and colour glow; the portrait and project cards do not move on hover
+- A straight, still hero portrait with a soft blue glow; the portrait and project cards do not move on hover
 - GSAP scroll reveals, staggered cards and animated counters
 - Dark/light toggle (remembered), sticky nav with active-section highlight, scroll progress bar
 - Typing role effect, project detail pages, styled 404 page, working contact form, call booking page
-- "Spectrum" colour system: each section, project and card has its own colour from one palette (see Colours above)
+- Blue theme, with each skill card in its own colour (see Colours above)
 - Self-hosted fonts via `next/font` (no request to Google at page load)
 - Security headers (`nosniff`, referrer policy, permissions policy, frame protection)
 - Accessibility: skip link, visible focus, semantic landmarks, reduced-motion support, Escape closes the mobile menu. axe-core reports no violations on the home and project pages in both themes.
@@ -138,6 +135,6 @@ After deploying, test your link at https://www.linkedin.com/post-inspector/ and 
 src/app          pages, SEO files, 404
 src/components   Nav, Hero, ScrollEffects (GSAP), Stats, ContactForm, BookingPicker, Loader
 src/data         content.ts  <- edit this
-src/lib          site.ts (public site URL), emailjs.ts (contact form config), booking.ts (booking on/off), palette.ts (colours)
+src/lib          site.ts (public site URL), emailjs.ts (contact form config), booking.ts (booking on/off), palette.ts (skill card colours)
 public           photo.png (+ add Nilesh_K_Resume.pdf)
 ```
